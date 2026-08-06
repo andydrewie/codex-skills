@@ -8,21 +8,48 @@ Each listed skill has its own canonical public repository. This catalogue links 
 
 ### analyze-screen-feedback
 
-Ground narrated screen-recording feedback in word timestamps, cursor and screen motion, readable keyframes, visible interface objects, and explicit uncertainty.
+**Purpose:** Ground narrated screen-recording feedback in word timestamps, cursor and screen motion, readable keyframes, visible interface objects, and explicit uncertainty.
 
-- **Canonical repository:** [andydrewie/analyze-screen-feedback](https://github.com/andydrewie/analyze-screen-feedback)
-- **Privacy:** Local-first; recordings are not uploaded, source media is not modified, and outputs are temporary by default.
-- **Platform:** macOS on Apple Silicon for the version 1 MLX transcription path.
-- **Install:**
+**Canonical repository:** [andydrewie/analyze-screen-feedback](https://github.com/andydrewie/analyze-screen-feedback)
 
-  ```bash
-  python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
-    --repo andydrewie/analyze-screen-feedback \
-    --path . \
-    --name analyze-screen-feedback
-  ```
+**Verified selective installation:**
 
-See the canonical repository for requirements, capabilities, limitations, and the pinned local model configuration.
+```bash
+python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
+  --repo andydrewie/analyze-screen-feedback \
+  --path . \
+  --name analyze-screen-feedback
+```
+
+### precise-terms
+
+**Purpose:** Transform verbose descriptions into concise, high-signal prompts or canonical technical terms while preserving meaning and requirements.
+
+**Canonical repository:** [andydrewie/precise-terms](https://github.com/andydrewie/precise-terms)
+
+**Verified selective installation:**
+
+```bash
+python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
+  --repo andydrewie/precise-terms \
+  --path skills/precise-terms \
+  --name precise-terms
+```
+
+### quantitative-grounding
+
+**Purpose:** Add the minimum sufficient quantitative structure for scale, comparison, likelihood, economics, uncertainty, and decision relevance without false precision.
+
+**Canonical repository:** [andydrewie/quantitative-grounding](https://github.com/andydrewie/quantitative-grounding)
+
+**Verified selective installation:**
+
+```bash
+python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
+  --repo andydrewie/quantitative-grounding \
+  --path . \
+  --name quantitative-grounding
+```
 
 ## Future entries
 
