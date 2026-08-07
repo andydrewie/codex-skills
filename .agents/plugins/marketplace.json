@@ -6,7 +6,7 @@
   "plugins": [
     {
       "name": "analyze-screen-feedback",
-      "version": "1.0.0",
+      "version": "1.0.2",
       "description": "Ground narrated macOS screen-recording feedback in local word timestamps, visible interface evidence, cursor motion, and explicit uncertainty.",
       "author": {
         "name": "Andrew Fai",
@@ -40,7 +40,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/andydrewie/analyze-screen-feedback.git",
-        "sha": "6218b8fd082c5b3762c7d5b79f6a9fd1e821b1f1"
+        "sha": "817e2aff32e57dd2ed689471172fe8191382f91a"
       },
       "policy": {
         "installation": "AVAILABLE",
@@ -99,8 +99,8 @@
     },
     {
       "name": "quantitative-grounding",
-      "version": "1.0.3",
-      "description": "Add decision-useful quantitative structure for scale, comparison, likelihood, economics, uncertainty, and consequential empirical claims without numerical theater or false precision.",
+      "version": "2.0.0",
+      "description": "Explicit-use skill for decision-useful quantitative structure across scale, comparison, likelihood, economics, uncertainty, and consequential empirical claims without numerical theater or false precision.",
       "author": {
         "name": "Andrew Fai",
         "url": "https://github.com/andydrewie"
@@ -117,7 +117,7 @@
       "interface": {
         "displayName": "Quantitative Grounding",
         "shortDescription": "Add decision-useful quantitative structure",
-        "longDescription": "Ground analytical claims in useful scale, comparison, likelihood, economics, and uncertainty without false precision.",
+        "longDescription": "Explicitly invoke quantitative grounding to clarify analytical claims with useful scale, comparison, likelihood, economics, and uncertainty without false precision.",
         "developerName": "Andrew Fai",
         "category": "Productivity",
         "capabilities": [
@@ -126,13 +126,13 @@
         "websiteURL": "https://github.com/andydrewie/quantitative-grounding",
         "termsOfServiceURL": "https://github.com/andydrewie/quantitative-grounding/blob/main/LICENSE",
         "defaultPrompt": [
-          "Use quantitative grounding to add decision-useful scale, comparison, and uncertainty to this analysis."
+          "Use $quantitative-grounding to add decision-useful scale, comparison, and uncertainty to this analysis."
         ]
       },
       "source": {
         "source": "url",
         "url": "https://github.com/andydrewie/quantitative-grounding.git",
-        "sha": "6c13b71e440e072fa5258495e5d3e990c9827927"
+        "sha": "3d079b14b72d2b7b3fae0eda8be59457647478db"
       },
       "policy": {
         "installation": "AVAILABLE",

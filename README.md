@@ -4,6 +4,15 @@ A Codex-only Agent Plugins marketplace for standalone skills and reviewed compat
 
 First-party skills link to their canonical public repositories. Reviewed third-party forks remain attributed to their upstream projects and install from immutable commits on dedicated compatibility branches. This catalogue does not duplicate source trees or include submodules. Entries are added only after the exact installation path has been tested with Codex and this repository's validator.
 
+## Activation model
+
+This catalog separates skill selection from permission to act:
+
+- The behavioral overlays `quantitative-grounding`, `precise-terms`, `adhd`, and `caveman` are explicit-only. Invoke them by name; ordinary prompts do not activate them.
+- `analyze-screen-feedback` is the narrow direct-intent exception. Codex may select it only when a request unambiguously asks to analyze a narrated screen recording; `$analyze-screen-feedback` remains preferred.
+
+Selecting a skill never authorizes package installation, downloads, uploads, persistent outputs, repository writes, messages, or other side effects. Each action remains subject to its own user-intent and approval boundary.
+
 ## Marketplace installation
 
 All five reviewed packages are pinned to full commit SHAs. Add the catalog once, then install the package you want by name:
@@ -75,6 +84,8 @@ These workflows replace the old fork-sync and duplicate local ADHD review automa
 
 **Purpose:** Ground narrated screen-recording feedback in word timestamps, cursor and screen motion, readable keyframes, visible interface objects, and explicit uncertainty.
 
+**Activation:** Narrow direct-intent exception. Codex may select it only for an unambiguous narrated screen-recording-analysis request; explicit `$analyze-screen-feedback` invocation is preferred.
+
 **Canonical repository:** [andydrewie/analyze-screen-feedback](https://github.com/andydrewie/analyze-screen-feedback)
 
 **Retained selective rollback installation:**
@@ -106,6 +117,8 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
 ### quantitative-grounding
 
 **Purpose:** Add the minimum sufficient quantitative structure for scale, comparison, likelihood, economics, uncertainty, and decision relevance without false precision.
+
+**Activation:** Explicit invocation only through `$quantitative-grounding`; requests involving numbers, estimates, or comparisons do not activate it automatically.
 
 **Canonical repository:** [andydrewie/quantitative-grounding](https://github.com/andydrewie/quantitative-grounding)
 
