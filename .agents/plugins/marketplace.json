@@ -1,0 +1,241 @@
+{
+  "name": "andydrewie-codex-skills",
+  "interface": {
+    "displayName": "Andrew Fai Codex Skills"
+  },
+  "plugins": [
+    {
+      "name": "analyze-screen-feedback",
+      "version": "1.0.0",
+      "description": "Ground narrated macOS screen-recording feedback in local word timestamps, visible interface evidence, cursor motion, and explicit uncertainty.",
+      "author": {
+        "name": "Andrew Fai",
+        "url": "https://github.com/andydrewie"
+      },
+      "homepage": "https://github.com/andydrewie/analyze-screen-feedback#readme",
+      "repository": "https://github.com/andydrewie/analyze-screen-feedback",
+      "license": "MIT",
+      "keywords": [
+        "screen-recording",
+        "usability",
+        "multimodal",
+        "macos",
+        "feedback"
+      ],
+      "interface": {
+        "displayName": "Analyze Screen Feedback",
+        "shortDescription": "Ground narrated feedback in on-screen evidence",
+        "longDescription": "Align narrated macOS screen recordings with local word timestamps, motion, readable frames, visible interface objects, and explicit uncertainty.",
+        "developerName": "Andrew Fai",
+        "category": "Developer Tools",
+        "capabilities": [
+          "Interactive",
+          "Write"
+        ],
+        "websiteURL": "https://github.com/andydrewie/analyze-screen-feedback",
+        "defaultPrompt": [
+          "Analyze this narrated screen recording and ground each spoken reference in visible interface evidence."
+        ]
+      },
+      "source": {
+        "source": "url",
+        "url": "https://github.com/andydrewie/analyze-screen-feedback.git",
+        "sha": "6218b8fd082c5b3762c7d5b79f6a9fd1e821b1f1"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL",
+        "products": [
+          "CODEX"
+        ]
+      },
+      "category": "Developer Tools"
+    },
+    {
+      "name": "precise-terms",
+      "version": "1.0.0",
+      "description": "Transform verbose instructions into concise prompts and canonical technical terms while preserving every stated requirement.",
+      "author": {
+        "name": "Andrew Fai",
+        "url": "https://github.com/andydrewie"
+      },
+      "homepage": "https://github.com/andydrewie/precise-terms#readme",
+      "repository": "https://github.com/andydrewie/precise-terms",
+      "license": "MIT",
+      "keywords": [
+        "terminology",
+        "prompt-writing",
+        "technical-writing",
+        "precision",
+        "developer-tools"
+      ],
+      "interface": {
+        "displayName": "Precise Terms",
+        "shortDescription": "Compress instructions into precise technical terms",
+        "longDescription": "Rewrite verbose instructions as concise, high-signal prompts or identify canonical technical terms without dropping requirements.",
+        "developerName": "Andrew Fai",
+        "category": "Developer Tools",
+        "capabilities": [
+          "Write"
+        ],
+        "websiteURL": "https://github.com/andydrewie/precise-terms",
+        "defaultPrompt": [
+          "Use $precise-terms to rewrite these instructions with concise, canonical technical terminology."
+        ]
+      },
+      "source": {
+        "source": "url",
+        "url": "https://github.com/andydrewie/precise-terms.git",
+        "sha": "f947f152ee127eb28a83aed59b37de97804229ec"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL",
+        "products": [
+          "CODEX"
+        ]
+      },
+      "category": "Developer Tools"
+    },
+    {
+      "name": "quantitative-grounding",
+      "version": "1.0.3",
+      "description": "Add decision-useful quantitative structure for scale, comparison, likelihood, economics, uncertainty, and consequential empirical claims without numerical theater or false precision.",
+      "author": {
+        "name": "Andrew Fai",
+        "url": "https://github.com/andydrewie"
+      },
+      "homepage": "https://github.com/andydrewie/quantitative-grounding",
+      "repository": "https://github.com/andydrewie/quantitative-grounding",
+      "license": "MIT",
+      "keywords": [
+        "analysis",
+        "decision-making",
+        "quantification",
+        "uncertainty"
+      ],
+      "interface": {
+        "displayName": "Quantitative Grounding",
+        "shortDescription": "Add decision-useful quantitative structure",
+        "longDescription": "Ground analytical claims in useful scale, comparison, likelihood, economics, and uncertainty without false precision.",
+        "developerName": "Andrew Fai",
+        "category": "Productivity",
+        "capabilities": [
+          "Write"
+        ],
+        "websiteURL": "https://github.com/andydrewie/quantitative-grounding",
+        "termsOfServiceURL": "https://github.com/andydrewie/quantitative-grounding/blob/main/LICENSE",
+        "defaultPrompt": [
+          "Use quantitative grounding to add decision-useful scale, comparison, and uncertainty to this analysis."
+        ]
+      },
+      "source": {
+        "source": "url",
+        "url": "https://github.com/andydrewie/quantitative-grounding.git",
+        "sha": "6c13b71e440e072fa5258495e5d3e990c9827927"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL",
+        "products": [
+          "CODEX"
+        ]
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "adhd",
+      "version": "0.1.4-codex.1",
+      "description": "Run explicit, isolated parallel ideation in Codex, then score, cluster, reject traps, and deepen the strongest options.",
+      "author": {
+        "name": "Udit Akhouri",
+        "url": "https://github.com/UditAkhourii"
+      },
+      "homepage": "https://github.com/andydrewie/adhd/tree/agent/codex-compatible-v1",
+      "repository": "https://github.com/andydrewie/adhd",
+      "license": "MIT",
+      "keywords": [
+        "codex",
+        "ideation",
+        "divergent-thinking",
+        "parallel-agents",
+        "decision-making"
+      ],
+      "interface": {
+        "displayName": "ADHD",
+        "shortDescription": "Parallel ideation, then scored convergence",
+        "longDescription": "Explore a problem through isolated parallel Codex sub-agents, score and cluster their ideas, reject attractive traps, and deepen the strongest options.",
+        "developerName": "Udit Akhouri",
+        "category": "Developer Tools",
+        "capabilities": [
+          "Interactive",
+          "Write"
+        ],
+        "websiteURL": "https://github.com/andydrewie/adhd/tree/agent/codex-compatible-v1",
+        "defaultPrompt": [
+          "Use $adhd to explore this decision through isolated cognitive frames, then converge on the strongest options."
+        ]
+      },
+      "source": {
+        "source": "url",
+        "url": "https://github.com/andydrewie/adhd.git",
+        "sha": "9c473f80636ecc3769ee234fb332994ecb05c2dd"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL",
+        "products": [
+          "CODEX"
+        ]
+      },
+      "category": "Developer Tools"
+    },
+    {
+      "name": "caveman",
+      "version": "0.1.0-codex.1",
+      "description": "Explicitly activate terse, low-filler Codex replies while preserving exact technical meaning, safety, and required progress communication.",
+      "author": {
+        "name": "Julius Brussee",
+        "url": "https://github.com/JuliusBrussee"
+      },
+      "homepage": "https://github.com/andydrewie/caveman/tree/agent/codex-compatible-v1/agent-plugins/caveman",
+      "repository": "https://github.com/andydrewie/caveman",
+      "license": "MIT",
+      "keywords": [
+        "codex",
+        "concise-writing",
+        "technical-writing",
+        "token-efficiency",
+        "response-style"
+      ],
+      "interface": {
+        "displayName": "Caveman",
+        "shortDescription": "Terse replies with exact technical meaning",
+        "longDescription": "Compress Codex replies into terse, low-filler language while preserving technical accuracy, safety, approvals, and required progress communication.",
+        "developerName": "Julius Brussee",
+        "category": "Productivity",
+        "capabilities": [
+          "Write"
+        ],
+        "websiteURL": "https://github.com/andydrewie/caveman/tree/agent/codex-compatible-v1/agent-plugins/caveman",
+        "defaultPrompt": [
+          "Use $caveman to compress this reply while preserving exact technical meaning, safety, and required progress communication."
+        ]
+      },
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/andydrewie/caveman.git",
+        "path": "agent-plugins/caveman",
+        "sha": "6fd290f5ffd6f20ba82ea6fa54519deea173216e"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL",
+        "products": [
+          "CODEX"
+        ]
+      },
+      "category": "Productivity"
+    }
+  ]
+}

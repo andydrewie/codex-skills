@@ -1,0 +1,36 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "demo-plugin",
+  "version": "1.0.0",
+  "description": "A deterministic fixture for the Codex skill catalog validator.",
+  "author": {
+    "name": "Andrew Fai",
+    "url": "https://github.com/andydrewie"
+  },
+  "homepage": "https://github.com/andydrewie/demo-plugin",
+  "repository": "https://github.com/andydrewie/demo-plugin",
+  "license": "MIT",
+  "keywords": [
+    "codex",
+    "testing"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Demo Plugin",
+        "shortDescription": "Validate portable Codex plugin packages.",
+        "longDescription": "A safe offline fixture used to verify portable metadata, Codex presentation metadata, skill discovery, and generated legacy compatibility.",
+        "developerName": "Andrew Fai",
+        "category": "Developer Tools",
+        "capabilities": [
+          "Skill discovery",
+          "Offline validation"
+        ],
+        "websiteURL": "https://github.com/andydrewie/demo-plugin",
+        "defaultPrompt": [
+          "Use $demo-skill to validate this fixture."
+        ]
+      }
+    }
+  }
+}

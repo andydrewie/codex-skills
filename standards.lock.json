@@ -1,0 +1,90 @@
+{
+  "format_version": 1,
+  "agent_plugins": {
+    "version": "1.0.0",
+    "status": "published",
+    "repository": "https://github.com/agentplugins/agent-plugins-spec",
+    "default_branch": "main",
+    "upstream_path": "spec",
+    "commit": "bd383552095128f6effe895b9257cfd580a6d179",
+    "release_discovery": {
+      "strategy": "semver-files",
+      "path": "spec",
+      "suffix": ".md"
+    },
+    "specification": {
+      "path": "spec/1.0.0.md",
+      "vendored_path": "vendor/agent-plugins-spec/1.0.0/specification.md",
+      "sha256": "97a658b7dca3ce1b4c2266b95da300fa51d9dc4ade59d73168e5f9104272da18"
+    },
+    "specification_license": {
+      "spdx": "CC-BY-4.0",
+      "path": "LICENSES/CC-BY-4.0.txt",
+      "vendored_path": "vendor/agent-plugins-spec/LICENSES/CC-BY-4.0.txt",
+      "sha256": "9e5f1b3c610b9c2da5c313bf81d577a7d1acec686bdb0384edefa6df0f90cd94"
+    },
+    "schemas_license": {
+      "spdx": "Apache-2.0",
+      "path": "LICENSES/Apache-2.0.txt",
+      "vendored_path": "vendor/agent-plugins-spec/LICENSES/Apache-2.0.txt",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    "schemas": {
+      "plugin": {
+        "id": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+        "upstream_path": "schemas/1.0.0/plugin.schema.json",
+        "path": "vendor/agent-plugins-spec/1.0.0/plugin.schema.json",
+        "sha256": "0a4aad95ce337878ad38802ebf0daa3fde76abe3f65400c86bcbb1ec0b3ab883"
+      },
+      "mcp": {
+        "id": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+        "upstream_path": "schemas/1.0.0/mcp.schema.json",
+        "path": "vendor/agent-plugins-spec/1.0.0/mcp.schema.json",
+        "sha256": "6539175bfcdf43085855183e86da40ea94b166547a72b47ae9a0a390516d3acb"
+      }
+    }
+  },
+  "agent_skills": {
+    "status": "unversioned",
+    "repository": "https://github.com/agentskills/agentskills",
+    "default_branch": "main",
+    "upstream_path": "docs/specification.mdx",
+    "commit": "217be548739f21d6008915c29aefe320ea1a90af",
+    "release_discovery": {
+      "strategy": "unversioned-file",
+      "path": "docs/specification.mdx"
+    },
+    "specification": {
+      "path": "docs/specification.mdx",
+      "vendored_path": "vendor/agent-skills/unversioned/specification.mdx",
+      "sha256": "b9079c0c10b7930e8c6a20ff2bc10cda2a3343c55185120e3f1116a1a529b220"
+    },
+    "license": {
+      "spdx": "CC-BY-4.0",
+      "path": "docs/LICENSE",
+      "vendored_path": "vendor/agent-skills/LICENSES/CC-BY-4.0.txt",
+      "sha256": "9e5f1b3c610b9c2da5c313bf81d577a7d1acec686bdb0384edefa6df0f90cd94"
+    },
+    "catalog_frontmatter_profile": {
+      "allowed_fields": [
+        "name",
+        "description"
+      ],
+      "required_fields": [
+        "name",
+        "description"
+      ],
+      "name_format": "lowercase-hyphen-case",
+      "name_max_length": 64,
+      "description_max_length": 1024,
+      "description_forbidden_characters": [
+        "<",
+        ">"
+      ]
+    }
+  },
+  "codex": {
+    "agent_plugins_minimum_version": "0.146.0",
+    "legacy_overlay_target": "0.145.x and earlier"
+  }
+}
