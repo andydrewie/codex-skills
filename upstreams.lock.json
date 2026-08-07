@@ -1,0 +1,491 @@
+{
+  "format_version": 1,
+  "tree_digest_algorithm": "sha256-codex-skills-tree-v1",
+  "marketplace": {
+    "name": "andydrewie-codex-skills",
+    "path": ".agents/plugins/marketplace.json"
+  },
+  "packages": {
+    "analyze-screen-feedback": {
+      "repository": "https://github.com/andydrewie/analyze-screen-feedback",
+      "tag_ruleset": {
+        "id": 20535226,
+        "enforcement": "active",
+        "include": ["refs/tags/codex-plugin-v*"],
+        "required_rule_types": ["deletion", "non_fast_forward"],
+        "bypass_actors": []
+      },
+      "current": {
+        "version": "1.0.0",
+        "commit": "6218b8fd082c5b3762c7d5b79f6a9fd1e821b1f1",
+        "tag": "codex-plugin-v1.0.0",
+        "plugin_root": ".",
+        "git_tree_sha1": "4ab86b74262fc89f41e7a74d1ae90768289984cd",
+        "tree_sha256": "5e165ab00d3001d36f3de19617ac9fc55dd001862cb325236fb7fda6ba99c265",
+        "file_count": 13,
+        "total_bytes": 96949,
+        "files": {
+          ".codex-plugin/plugin.json": "e3fce8fa5352440c9bafbb56500c54aba0d126f338869f78a9a8efd430f2c266",
+          "LICENSE": "d25c2037118fb45a5b74006e8c22b40f212a3962de5fde9f6155ba1b72fa29f5",
+          "plugin.json": "78611bb3de3ffb28d8e2e644f73b02b55ea662cfa27de30114ce1c1ea38bc35f",
+          "skills/analyze-screen-feedback/SKILL.md": "691f1e1759265bbf6d2d2316c7f38ce7229b8c761b4dcb5b885fa77129cf7ab8",
+          "skills/analyze-screen-feedback/agents/openai.yaml": "5099f4941db9dc98028a9d450a8a87650d510d8d475420dbb7a42eccfcefa3ea",
+          "skills/analyze-screen-feedback/scripts/build_evidence.py": "10a30c1fd6214e2ce6f7de45784d12926f6455dadbee978a1cd731baec9572db"
+        }
+      },
+      "previous": {
+        "commit": "25783c043f616c227ec077bc30c9fe671cb02297",
+        "path": ".",
+        "git_tree_sha1": "13d57ebd041423847ff0d0053013f33857ec756a",
+        "tree_sha256": "3c2057c7f9adfa347d7c7698976b5b38f20ef9a4021991e3e1b77dde630cf9ea",
+        "file_count": 6,
+        "total_bytes": 45318
+      }
+    },
+    "precise-terms": {
+      "repository": "https://github.com/andydrewie/precise-terms",
+      "tag_ruleset": {
+        "id": 20535222,
+        "enforcement": "active",
+        "include": ["refs/tags/codex-plugin-v*"],
+        "required_rule_types": ["deletion", "non_fast_forward"],
+        "bypass_actors": []
+      },
+      "current": {
+        "version": "1.0.0",
+        "commit": "f947f152ee127eb28a83aed59b37de97804229ec",
+        "tag": "codex-plugin-v1.0.0",
+        "plugin_root": ".",
+        "git_tree_sha1": "70f4d081c668e68ef1444e71d613f9ce3987cbf5",
+        "tree_sha256": "93b5a5b92ca8e81af0903ab366323d7d015aa3422c698c312d31b83f76a893a1",
+        "file_count": 8,
+        "total_bytes": 18547,
+        "files": {
+          ".codex-plugin/plugin.json": "6c07b1af4b992f90b9b940f11dcce0873e6078111023ba8348af32ab9489b01d",
+          "LICENSE": "d25c2037118fb45a5b74006e8c22b40f212a3962de5fde9f6155ba1b72fa29f5",
+          "plugin.json": "e0f92710baa689fa076016f0d0f5b705c5b2966cc673690b80b6a6f58d4b3759",
+          "skills/precise-terms/SKILL.md": "9eee98edbcc0e5324220455170165733abc291aa43c908be71e61a800b0ea6de",
+          "skills/precise-terms/agents/openai.yaml": "3395ff7c0440750d47d3a98f98917b6a8d750fff094bbc1170970374935ae6d3"
+        }
+      },
+      "previous": {
+        "commit": "b74028f6115adf35b68e040f8241f02f58f6230c",
+        "path": "skills/precise-terms",
+        "git_tree_sha1": "5a14fcf2998f1f7250a81591301ff8c97e036d1d",
+        "tree_sha256": "24d2d4e6e81a8f203027b4c194257d07b2642388d57f6cbda7cafde04f7bb633",
+        "file_count": 2,
+        "total_bytes": 4985
+      }
+    },
+    "quantitative-grounding": {
+      "repository": "https://github.com/andydrewie/quantitative-grounding",
+      "tag_ruleset": {
+        "id": 20535224,
+        "enforcement": "active",
+        "include": ["refs/tags/codex-plugin-v*"],
+        "required_rule_types": ["deletion", "non_fast_forward"],
+        "bypass_actors": []
+      },
+      "current": {
+        "version": "1.0.3",
+        "commit": "6c13b71e440e072fa5258495e5d3e990c9827927",
+        "tag": "codex-plugin-v1.0.3",
+        "plugin_root": ".",
+        "git_tree_sha1": "47d255b0b18133f5e6fd38d00177d128167308a4",
+        "tree_sha256": "195559f30ee87475754abffa04570103498e8f4ceda94730cedd05071c127afd",
+        "file_count": 23,
+        "total_bytes": 78909,
+        "files": {
+          ".codex-plugin/plugin.json": "d6f18b3162f8a82fe38bbb056c77a7306c09690ab100239f6b14b7342e5776d7",
+          "LICENSE": "d25c2037118fb45a5b74006e8c22b40f212a3962de5fde9f6155ba1b72fa29f5",
+          "SKILL.md": "c82b5d06f3bd65aa50fe120a2de8ab0d168dbd49e661fd424a9706ec76083a3c",
+          "agents/openai.yaml": "9e6c2851854086029257a11b0e4c637db02155ed06374bcecb172fd707965b6d",
+          "plugin.json": "55b4148dbd9f42d4cb3d882037f0a1797706a8b32056941b74ac5b6668aeda7e",
+          "schemas/quantitative-frame.schema.json": "7cfc50efbf9ad6c11278f9884124e9c4cad77f9aab2c5fa893f55cf00e91dc07",
+          "skills/quantitative-grounding/SKILL.md": "c82b5d06f3bd65aa50fe120a2de8ab0d168dbd49e661fd424a9706ec76083a3c",
+          "skills/quantitative-grounding/agents/openai.yaml": "9e6c2851854086029257a11b0e4c637db02155ed06374bcecb172fd707965b6d"
+        }
+      },
+      "previous": {
+        "commit": "26d7cd48af3868f10ca7172aaaf6fd4ac9b1f1c4",
+        "path": ".",
+        "git_tree_sha1": "90d417baafc560f9785a33287a3c249f04bcf699",
+        "tree_sha256": "a6297585fc019d190151dbb6de23b743dc300fed0935f3c14b9a3396dbe969c0",
+        "file_count": 19,
+        "total_bytes": 56863
+      }
+    },
+    "adhd": {
+      "repository": "https://github.com/andydrewie/adhd",
+      "tag_ruleset": {
+        "id": 20535221,
+        "enforcement": "active",
+        "include": ["refs/tags/codex-plugin-v*"],
+        "required_rule_types": ["deletion", "non_fast_forward"],
+        "bypass_actors": []
+      },
+      "current": {
+        "version": "0.1.4-codex.1",
+        "commit": "9c473f80636ecc3769ee234fb332994ecb05c2dd",
+        "tag": "codex-plugin-v0.1.4-codex.1",
+        "plugin_root": ".",
+        "git_tree_sha1": "827a612af60247d7c58075dc98994ebd792297df",
+        "tree_sha256": "4bbba82ee7e01bef1c1af3526da8f767169ddcb4a455fa477847ff56a5667219",
+        "file_count": 53,
+        "total_bytes": 2403305,
+        "files": {
+          ".codex-plugin/plugin.json": "cb728788fcff74303ed6ffb1ada65d13697ae29b89bfa594ccd4cbf4352cfffa",
+          "LICENSE": "3f08d24b5561fc516b262351cb8e0302d30e7d9139f01b4a637e4bf3b5ab0938",
+          "plugin.json": "7ba5c339418b7e2d9dd116b46168502fcc9c0ceb4e73ba7c8cf9c8f07a4785a9",
+          "skills/adhd/LICENSE.txt": "3f08d24b5561fc516b262351cb8e0302d30e7d9139f01b4a637e4bf3b5ab0938",
+          "skills/adhd/SKILL.md": "bec3ba54fa6336e7328d2a5e04e486b9dcab8a3f06423c46c8e63fd6cec89b30",
+          "skills/adhd/agents/openai.yaml": "7b1c49c14a1b51eda579d7f9883177d9d0621f58df6cd50c6fed43b975f36050"
+        }
+      },
+      "previous": {
+        "commit": "24d18f865d2378a2d1a212c48f59cc578b64189d",
+        "path": "skills/adhd",
+        "git_tree_sha1": "0bac004b83303493a6a6ea94932896bf499f9ab5",
+        "tree_sha256": "819e5c8e4e9b2b414d17eaf55169c3274538316f3b3d72b54d956aceb070fd08",
+        "file_count": 3,
+        "total_bytes": 7316
+      }
+    },
+    "caveman": {
+      "repository": "https://github.com/andydrewie/caveman",
+      "tag_ruleset": {
+        "id": 20535223,
+        "enforcement": "active",
+        "include": ["refs/tags/codex-plugin-v*"],
+        "required_rule_types": ["deletion", "non_fast_forward"],
+        "bypass_actors": []
+      },
+      "current": {
+        "version": "0.1.0-codex.1",
+        "commit": "6fd290f5ffd6f20ba82ea6fa54519deea173216e",
+        "tag": "codex-plugin-v0.1.0-codex.1",
+        "plugin_root": "agent-plugins/caveman",
+        "git_tree_sha1": "32af3be7986b1a1789a5438bf8b074a1d5c5e1b3",
+        "tree_sha256": "0eaa7ce61bdcd9144c8458075eb6347ad049128f7e25b77ef785ef29c774192c",
+        "file_count": 8,
+        "total_bytes": 10997,
+        "files": {
+          ".codex-plugin/plugin.json": "c0d3b0dc99663edd4f973f08ec34c438dac138165b53e204b7f61f04aec27ada",
+          "LICENSE": "5eb826cd03151bcc7cce3f80d40e87733237fedfc6c36d6908aca5fd650a0bdb",
+          "plugin.json": "08fa8a36f0767b17324d90f3fcfaaff4b6c3c68faf3b91739d654170d7fa7f28",
+          "skills/caveman/LICENSE.txt": "b5d205abcc65ccf89e82945e32982ddeb2dfb511d5c6990d78317f9b9cba7a91",
+          "skills/caveman/SKILL.md": "a988f91f29b8e01ad9171af323673ef0407cb334df4f2a03a476a9892c062a58",
+          "skills/caveman/agents/openai.yaml": "cc1bec3549376f83ac48cf818c24f97477f908537255891377ab6bfbda7ff13e",
+          "skills/caveman/assets/caveman-small.svg": "1c8f55516541b6094cb20ceabb50ff89b01d1acafaae84487e53739deebcbb1f",
+          "skills/caveman/assets/caveman.svg": "8024fa96dce034675eb5610139e75f6d2b5db3b4cb3df3090adb8a2b2a285595"
+        }
+      },
+      "previous": {
+        "commit": "c71d33b24b1ceb15dbfd2994adb5bcb9dd490860",
+        "path": "codex-skills/caveman",
+        "git_tree_sha1": "eecb70821239c9ae784bb9cc6980521b79ae4151",
+        "tree_sha256": "c2eb740387600f1e043c2a63b1381b1e8a3c1ca7ce0677528caacc9e0d5e4b31",
+        "file_count": 5,
+        "total_bytes": 6917
+      }
+    }
+  },
+  "adapters": {
+    "adhd": {
+      "package": "adhd",
+      "adapter_branch": "agent/codex-compatible-v1",
+      "fork_provenance": {
+        "must_be_fork": true,
+        "parent_repository": "https://github.com/UditAkhourii/adhd"
+      },
+      "upstream": {
+        "repository": "https://github.com/UditAkhourii/adhd",
+        "default_branch": "main",
+        "baseline_commit": "3d9dc487bc2eba4449742e2db0d92be9ebdf95b6",
+        "source_path": "skills/adhd",
+        "git_tree_sha1": "20295ca5b738965bcae4385db387faf2bfb8fc1e",
+        "tree_sha256": "3c64bd021602a56777950e9d3570fa31a4c93865fd9a2531e7c243550a7d5795",
+        "file_count": 1,
+        "total_bytes": 11118,
+        "files": {
+          "SKILL.md": "06debe68a370206acd93e0b2ee54d6395bc367fdfbc079f2348e3ce2966dac0a"
+        },
+        "watched_files": {
+          "LICENSE": "3f08d24b5561fc516b262351cb8e0302d30e7d9139f01b4a637e4bf3b5ab0938",
+          "SOURCE-SPEC.md": "13aaeca3cbe9b7bd10444969ff38c8200780d56110f2eebf91ea9e0f12a3571d"
+        }
+      },
+      "invariants": [
+        {
+          "id": "explicit-invocation-only",
+          "description": "ADHD never auto-triggers.",
+          "assertions": [
+            {
+              "op": "file_exists",
+              "path": "skills/adhd/SKILL.md"
+            },
+            {
+              "op": "contains_utf8",
+              "path": "skills/adhd/SKILL.md",
+              "value": "Run only after explicit user invocation of `$adhd`"
+            },
+            {
+              "op": "contains_utf8",
+              "path": "skills/adhd/agents/openai.yaml",
+              "value": "allow_implicit_invocation: false"
+            },
+            {
+              "op": "not_contains_utf8",
+              "path": "skills/adhd/agents/openai.yaml",
+              "value": "allow_implicit_invocation: true"
+            },
+            {
+              "op": "json_pointer_equals",
+              "path": "plugin.json",
+              "pointer": "/name",
+              "value": "adhd"
+            }
+          ]
+        },
+        {
+          "id": "isolated-parallel-divergence",
+          "description": "Divergence uses real isolated child agents.",
+          "assertions": [
+            {
+              "op": "contains_utf8",
+              "path": "skills/adhd/SKILL.md",
+              "value": "Use up to four isolated child"
+            }
+          ]
+        },
+        {
+          "id": "capacity-disclosure-no-serial-pretence",
+          "description": "Insufficient child-agent capacity is disclosed instead of simulated.",
+          "assertions": [
+            {
+              "op": "contains_utf8",
+              "path": "skills/adhd/SKILL.md",
+              "value": "at least two isolated child"
+            },
+            {
+              "op": "contains_utf8",
+              "path": "skills/adhd/SKILL.md",
+              "value": "Never silently present a serial simulation as ADHD."
+            }
+          ]
+        },
+        {
+          "id": "two-phase-scored-convergence",
+          "description": "The workflow preserves divergent and critical convergence phases.",
+          "assertions": [
+            {
+              "op": "contains_utf8",
+              "path": "skills/adhd/SKILL.md",
+              "value": "## Phase 1: diverge without criticism"
+            },
+            {
+              "op": "contains_utf8",
+              "path": "skills/adhd/SKILL.md",
+              "value": "## Phase 2: focus with criticism"
+            },
+            {
+              "op": "contains_utf8",
+              "path": "skills/adhd/SKILL.md",
+              "value": "novelty × 0.35 + viability × 0.40 + fit × 0.25"
+            }
+          ]
+        },
+        {
+          "id": "honest-cost-disclosure",
+          "description": "The adapter keeps its explicit cost warning.",
+          "assertions": [
+            {
+              "op": "contains_utf8",
+              "path": "skills/adhd/SKILL.md",
+              "value": "can cost several times more than"
+            },
+            {
+              "op": "contains_utf8",
+              "path": "skills/adhd/SKILL.md",
+              "value": "a direct answer."
+            }
+          ]
+        },
+        {
+          "id": "no-side-effect-authority",
+          "description": "The skill does not grant write or external-action authority.",
+          "assertions": [
+            {
+              "op": "contains_utf8",
+              "path": "skills/adhd/SKILL.md",
+              "value": "This workflow authorizes analysis and child-agent spawning only. It does not"
+            },
+            {
+              "op": "contains_utf8",
+              "path": "skills/adhd/SKILL.md",
+              "value": "authorize file writes, repository changes, external messages, or other side"
+            }
+          ]
+        }
+      ]
+    },
+    "caveman": {
+      "package": "caveman",
+      "adapter_branch": "agent/codex-compatible-v1",
+      "fork_provenance": {
+        "must_be_fork": true,
+        "parent_repository": "https://github.com/JuliusBrussee/caveman"
+      },
+      "safety_checks": {
+        "disabled_sync_workflow": {
+          "id": 328387860,
+          "path": ".github/workflows/sync-skill.yml",
+          "expected_state": "disabled_manually"
+        }
+      },
+      "upstream": {
+        "repository": "https://github.com/JuliusBrussee/caveman",
+        "default_branch": "main",
+        "baseline_commit": "ec83e5bace4c20484d704dea21e12fc4eb94e9aa",
+        "source_path": "plugins/caveman/skills/caveman",
+        "git_tree_sha1": "5501d8869b840169af966694bfa852965162f2f4",
+        "tree_sha256": "56ff72f1aeeedd62803ca97907ba183b7c13216f13166c77f11ff49112905a3d",
+        "file_count": 4,
+        "total_bytes": 7474,
+        "files": {
+          "SKILL.md": "daf9cec496ebd039809d8236f99f17fa1b4beaadf8ce4e2d532d0da51d70afce",
+          "agents/openai.yaml": "4961a650c93d688aab1f68850149cfde235a9f25b20072fcad3ee192914808fc",
+          "assets/caveman-small.svg": "1c8f55516541b6094cb20ceabb50ff89b01d1acafaae84487e53739deebcbb1f",
+          "assets/caveman.svg": "8024fa96dce034675eb5610139e75f6d2b5db3b4cb3df3090adb8a2b2a285595"
+        },
+        "watched_files": {
+          "LICENSE": "5eb826cd03151bcc7cce3f80d40e87733237fedfc6c36d6908aca5fd650a0bdb",
+          "docs/HONEST-NUMBERS.md": "67910ebd9bb99206e39d953e76b9c196d8c96eeef794ef6a69daa49366dd79f8"
+        }
+      },
+      "invariants": [
+        {
+          "id": "explicit-invocation-only",
+          "description": "Caveman never auto-triggers from generic brevity requests.",
+          "assertions": [
+            {
+              "op": "file_exists",
+              "path": "skills/caveman/SKILL.md"
+            },
+            {
+              "op": "contains_utf8",
+              "path": "skills/caveman/SKILL.md",
+              "value": "Activate only when the user invokes `$caveman`"
+            },
+            {
+              "op": "contains_utf8",
+              "path": "skills/caveman/agents/openai.yaml",
+              "value": "allow_implicit_invocation: false"
+            },
+            {
+              "op": "not_contains_utf8",
+              "path": "skills/caveman/agents/openai.yaml",
+              "value": "allow_implicit_invocation: true"
+            },
+            {
+              "op": "json_pointer_equals",
+              "path": "plugin.json",
+              "pointer": "/name",
+              "value": "caveman"
+            }
+          ]
+        },
+        {
+          "id": "preserve-progress-and-tool-narration",
+          "description": "Required progress communication remains visible.",
+          "assertions": [
+            {
+              "op": "contains_utf8",
+              "path": "skills/caveman/SKILL.md",
+              "value": "Do not suppress required tool narration, progress updates"
+            }
+          ]
+        },
+        {
+          "id": "preserve-approvals-warnings-and-blockers",
+          "description": "Approvals, warnings, and blocker explanations remain explicit.",
+          "assertions": [
+            {
+              "op": "contains_utf8",
+              "path": "skills/caveman/SKILL.md",
+              "value": "approvals, warnings,"
+            },
+            {
+              "op": "contains_utf8",
+              "path": "skills/caveman/SKILL.md",
+              "value": "or blocker explanations."
+            }
+          ]
+        },
+        {
+          "id": "auto-clarity-for-risk",
+          "description": "Risky or irreversible communication temporarily expands for clarity.",
+          "assertions": [
+            {
+              "op": "contains_utf8",
+              "path": "skills/caveman/SKILL.md",
+              "value": "Temporarily use normal, explicit prose for:"
+            },
+            {
+              "op": "contains_utf8",
+              "path": "skills/caveman/SKILL.md",
+              "value": "irreversible or destructive confirmations"
+            }
+          ]
+        },
+        {
+          "id": "durable-artifacts-use-professional-prose",
+          "description": "Durable artifacts remain in professional prose.",
+          "assertions": [
+            {
+              "op": "contains_utf8",
+              "path": "skills/caveman/SKILL.md",
+              "value": "Keep durable artifacts in normal professional prose"
+            },
+            {
+              "op": "contains_utf8",
+              "path": "skills/caveman/SKILL.md",
+              "value": "Activating Caveman changes response style only. It does not authorize file"
+            },
+            {
+              "op": "contains_utf8",
+              "path": "skills/caveman/SKILL.md",
+              "value": "writes, repository changes, external messages, or other side effects; those"
+            },
+            {
+              "op": "byte_equal",
+              "path": "skills/caveman/SKILL.md",
+              "other_path": "codex-skills/caveman/SKILL.md"
+            },
+            {
+              "op": "byte_equal",
+              "path": "skills/caveman/agents/openai.yaml",
+              "other_path": "codex-skills/caveman/agents/openai.yaml"
+            }
+          ]
+        },
+        {
+          "id": "honest-token-cost-caveat",
+          "description": "The adapter preserves its input-cost caveat.",
+          "assertions": [
+            {
+              "op": "contains_utf8",
+              "path": "skills/caveman/SKILL.md",
+              "value": "It can be net-negative for terse or tool-heavy"
+            },
+            {
+              "op": "contains_utf8",
+              "path": "skills/caveman/SKILL.md",
+              "value": "work and for request-priced services."
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

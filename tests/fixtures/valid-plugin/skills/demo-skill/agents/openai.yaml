@@ -1,0 +1,6 @@
+interface:
+  display_name: "Demo Skill"
+  short_description: "Validate portable Codex plugin fixtures"
+  default_prompt: "Use $demo-skill to validate this fixture."
+policy:
+  allow_implicit_invocation: true
