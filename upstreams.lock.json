@@ -16,20 +16,20 @@
         "bypass_actors": []
       },
       "current": {
-        "version": "1.0.0",
-        "commit": "6218b8fd082c5b3762c7d5b79f6a9fd1e821b1f1",
-        "tag": "codex-plugin-v1.0.0",
+        "version": "1.0.2",
+        "commit": "817e2aff32e57dd2ed689471172fe8191382f91a",
+        "tag": "codex-plugin-v1.0.2",
         "plugin_root": ".",
-        "git_tree_sha1": "4ab86b74262fc89f41e7a74d1ae90768289984cd",
-        "tree_sha256": "5e165ab00d3001d36f3de19617ac9fc55dd001862cb325236fb7fda6ba99c265",
+        "git_tree_sha1": "03e7a31f67fde7ab93998cce05fc5dfcc7892f03",
+        "tree_sha256": "f1168c419898859f85444c816de179578ed5d14f194a056a8c4f50d6df49104f",
         "file_count": 13,
-        "total_bytes": 96949,
+        "total_bytes": 100036,
         "files": {
-          ".codex-plugin/plugin.json": "e3fce8fa5352440c9bafbb56500c54aba0d126f338869f78a9a8efd430f2c266",
+          ".codex-plugin/plugin.json": "34dd21b97330286b747af6fa7f0e5319569567caab68f6da1510ff4caef2cbbd",
           "LICENSE": "d25c2037118fb45a5b74006e8c22b40f212a3962de5fde9f6155ba1b72fa29f5",
-          "plugin.json": "78611bb3de3ffb28d8e2e644f73b02b55ea662cfa27de30114ce1c1ea38bc35f",
+          "plugin.json": "ca3d6fbacd58f73523bc5a1ce9886e0212e811c33502dca17dec8805413d3aff",
           "skills/analyze-screen-feedback/SKILL.md": "691f1e1759265bbf6d2d2316c7f38ce7229b8c761b4dcb5b885fa77129cf7ab8",
-          "skills/analyze-screen-feedback/agents/openai.yaml": "5099f4941db9dc98028a9d450a8a87650d510d8d475420dbb7a42eccfcefa3ea",
+          "skills/analyze-screen-feedback/agents/openai.yaml": "1e4c7fb11f1a6e9c80b8d5505fc45a139276e918f649db00ff5df0010dde4f48",
           "skills/analyze-screen-feedback/scripts/build_evidence.py": "10a30c1fd6214e2ce6f7de45784d12926f6455dadbee978a1cd731baec9572db"
         }
       },
@@ -87,23 +87,23 @@
         "bypass_actors": []
       },
       "current": {
-        "version": "1.0.3",
-        "commit": "6c13b71e440e072fa5258495e5d3e990c9827927",
-        "tag": "codex-plugin-v1.0.3",
+        "version": "2.0.0",
+        "commit": "3d079b14b72d2b7b3fae0eda8be59457647478db",
+        "tag": "codex-plugin-v2.0.0",
         "plugin_root": ".",
-        "git_tree_sha1": "47d255b0b18133f5e6fd38d00177d128167308a4",
-        "tree_sha256": "195559f30ee87475754abffa04570103498e8f4ceda94730cedd05071c127afd",
+        "git_tree_sha1": "382e1b4c4440c7a2bc2566c4f77100ae6fc66046",
+        "tree_sha256": "64196ad4cc624556a141bf2d2aa2335da8471168f1d0b316140488e70277c90d",
         "file_count": 23,
-        "total_bytes": 78909,
+        "total_bytes": 87688,
         "files": {
-          ".codex-plugin/plugin.json": "d6f18b3162f8a82fe38bbb056c77a7306c09690ab100239f6b14b7342e5776d7",
+          ".codex-plugin/plugin.json": "1abc1bb755c8cfc449fb2b2106e113def8f67f2d2d35f378449631274e5f8752",
           "LICENSE": "d25c2037118fb45a5b74006e8c22b40f212a3962de5fde9f6155ba1b72fa29f5",
-          "SKILL.md": "c82b5d06f3bd65aa50fe120a2de8ab0d168dbd49e661fd424a9706ec76083a3c",
-          "agents/openai.yaml": "9e6c2851854086029257a11b0e4c637db02155ed06374bcecb172fd707965b6d",
-          "plugin.json": "55b4148dbd9f42d4cb3d882037f0a1797706a8b32056941b74ac5b6668aeda7e",
+          "SKILL.md": "2c43d36d6e78356e12ad7875945ea53d84027562cd2adf11060e4f194a77055a",
+          "agents/openai.yaml": "f7c9bd7ebcd910c89b5cd73ba1f2e8db2bdb66414c0d464f52a50a76f0df4caa",
+          "plugin.json": "cdc870d7919f4a31b68ccbe781e5c9ea4da5ea347e50e05b65847662f5cb1f1d",
           "schemas/quantitative-frame.schema.json": "7cfc50efbf9ad6c11278f9884124e9c4cad77f9aab2c5fa893f55cf00e91dc07",
-          "skills/quantitative-grounding/SKILL.md": "c82b5d06f3bd65aa50fe120a2de8ab0d168dbd49e661fd424a9706ec76083a3c",
-          "skills/quantitative-grounding/agents/openai.yaml": "9e6c2851854086029257a11b0e4c637db02155ed06374bcecb172fd707965b6d"
+          "skills/quantitative-grounding/SKILL.md": "2c43d36d6e78356e12ad7875945ea53d84027562cd2adf11060e4f194a77055a",
+          "skills/quantitative-grounding/agents/openai.yaml": "f7c9bd7ebcd910c89b5cd73ba1f2e8db2bdb66414c0d464f52a50a76f0df4caa"
         }
       },
       "previous": {
@@ -113,6 +113,43 @@
         "tree_sha256": "a6297585fc019d190151dbb6de23b743dc300fed0935f3c14b9a3396dbe969c0",
         "file_count": 19,
         "total_bytes": 56863
+      }
+    },
+    "side-refresh": {
+      "repository": "https://github.com/andydrewie/side-refresh",
+      "tag_ruleset": {
+        "id": 20602051,
+        "enforcement": "active",
+        "include": ["refs/tags/codex-plugin-v*"],
+        "required_rule_types": ["deletion", "non_fast_forward"],
+        "bypass_actors": []
+      },
+      "current": {
+        "version": "1.0.0",
+        "commit": "5a33f214bdb2e13adbd1f4d8db4e78878e1a7317",
+        "tag": "codex-plugin-v1.0.0",
+        "plugin_root": ".",
+        "git_tree_sha1": "f0b5bb9dd640e6ef7abff73cf3b9812ec5db316e",
+        "tree_sha256": "3b2ec0218dfa933f4d3505409be449e1a9b0959bcbc0f87d13063e5a2fd68009",
+        "file_count": 11,
+        "total_bytes": 24852,
+        "files": {
+          ".codex-plugin/plugin.json": "bb630d98e8e4b2fad65c63ecf359d1f71311f0a50da68b1c0277b468f3a58380",
+          "LICENSE": "d25c2037118fb45a5b74006e8c22b40f212a3962de5fde9f6155ba1b72fa29f5",
+          "SKILL.md": "a3cb4970f6a7c9284faab610061e5dbb89fdbd90a42912f08e26b71b4e60c107",
+          "agents/openai.yaml": "1d82cf16a3c3f226162773e3603f27e145107e835fe04bc0734101bd0c0b17ca",
+          "plugin.json": "5d917c0a617f8890b3fd639610033724bf06e8285160f065e102f03937d26364",
+          "skills/side-refresh/SKILL.md": "a3cb4970f6a7c9284faab610061e5dbb89fdbd90a42912f08e26b71b4e60c107",
+          "skills/side-refresh/agents/openai.yaml": "1d82cf16a3c3f226162773e3603f27e145107e835fe04bc0734101bd0c0b17ca"
+        }
+      },
+      "previous": {
+        "commit": "8068ef9f235d74b7347efc3deea4eb15e4f4cd2b",
+        "path": ".",
+        "git_tree_sha1": "6d22e143bc4f0c188f4e6b2015a49368fe05857d",
+        "tree_sha256": "40869e6a5b4625fcf4c3d4bfb22425bc236c67a79cead0c78fcab1a0a786ee16",
+        "file_count": 5,
+        "total_bytes": 5744
       }
     },
     "adhd": {

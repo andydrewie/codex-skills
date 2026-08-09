@@ -62,6 +62,7 @@ REQUIRED_PACKAGE_NAMES = {
     "analyze-screen-feedback",
     "precise-terms",
     "quantitative-grounding",
+    "side-refresh",
     "adhd",
     "caveman",
 }
@@ -69,6 +70,7 @@ REQUIRED_PACKAGE_REPOSITORIES = {
     "analyze-screen-feedback": ("https://github.com/andydrewie/analyze-screen-feedback", 20535226),
     "precise-terms": ("https://github.com/andydrewie/precise-terms", 20535222),
     "quantitative-grounding": ("https://github.com/andydrewie/quantitative-grounding", 20535224),
+    "side-refresh": ("https://github.com/andydrewie/side-refresh", 20602051),
     "adhd": ("https://github.com/andydrewie/adhd", 20535221),
     "caveman": ("https://github.com/andydrewie/caveman", 20535223),
 }
@@ -418,7 +420,7 @@ def validate_release_lock_structure(lock: dict[str, Any]) -> None:
     safe_relative_path(marketplace["path"])
     packages = lock["packages"]
     if not isinstance(packages, dict) or set(packages) != REQUIRED_PACKAGE_NAMES:
-        raise MonitorError("packages lock differs from the reviewed five-package set")
+        raise MonitorError("packages lock differs from the reviewed package set")
     for name, package in packages.items():
         safe_relative_path(name)
         package = _require_exact_keys(
@@ -465,6 +467,8 @@ def validate_release_lock_structure(lock: dict[str, Any]) -> None:
             root_field="path",
             include_files=False,
         )
+        if package["current"]["commit"] == package["previous"]["commit"]:
+            raise MonitorError(f"package {name} current and rollback commits must differ")
     adapters = lock["adapters"]
     if not isinstance(adapters, dict) or set(adapters) != REQUIRED_ADAPTER_NAMES:
         raise MonitorError("adapters lock differs from the reviewed ADHD/Caveman set")

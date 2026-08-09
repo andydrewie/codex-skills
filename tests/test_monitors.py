@@ -135,9 +135,16 @@ class MonitorTests(unittest.TestCase):
             validate_release_lock_structure(missing_adapter)
 
         missing_package = copy.deepcopy(original)
-        del missing_package["packages"]["analyze-screen-feedback"]
+        del missing_package["packages"]["side-refresh"]
         with self.assertRaises(MonitorError):
             validate_release_lock_structure(missing_package)
+
+        collapsed_rollback = copy.deepcopy(original)
+        collapsed_rollback["packages"]["side-refresh"]["previous"]["commit"] = (
+            collapsed_rollback["packages"]["side-refresh"]["current"]["commit"]
+        )
+        with self.assertRaises(MonitorError):
+            validate_release_lock_structure(collapsed_rollback)
 
         weakened_invariant = copy.deepcopy(original)
         weakened_invariant["adapters"]["adhd"]["invariants"][0]["assertions"] = [
