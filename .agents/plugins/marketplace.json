@@ -144,6 +144,53 @@
       "category": "Productivity"
     },
     {
+      "name": "side-refresh",
+      "version": "1.0.0",
+      "description": "Refresh a side conversation from the current state of an active main Codex task without interrupting or mutating it.",
+      "author": {
+        "name": "Andrew Fai",
+        "url": "https://github.com/andydrewie"
+      },
+      "homepage": "https://github.com/andydrewie/side-refresh#readme",
+      "repository": "https://github.com/andydrewie/side-refresh",
+      "license": "MIT",
+      "keywords": [
+        "codex",
+        "task-context",
+        "side-conversation",
+        "context-refresh",
+        "explicit-invocation"
+      ],
+      "interface": {
+        "displayName": "Side Refresh",
+        "shortDescription": "Refresh a side chat from the main task",
+        "longDescription": "Use Codex app task-list and task-read capabilities to refresh a side conversation from an active main task without navigating to, interrupting, or mutating it.",
+        "developerName": "Andrew Fai",
+        "category": "Productivity",
+        "capabilities": [
+          "Interactive",
+          "Write"
+        ],
+        "websiteURL": "https://github.com/andydrewie/side-refresh",
+        "defaultPrompt": [
+          "Use $side-refresh to summarize the active main task for this project."
+        ]
+      },
+      "source": {
+        "source": "url",
+        "url": "https://github.com/andydrewie/side-refresh.git",
+        "sha": "5a33f214bdb2e13adbd1f4d8db4e78878e1a7317"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL",
+        "products": [
+          "CODEX"
+        ]
+      },
+      "category": "Productivity"
+    },
+    {
       "name": "adhd",
       "version": "0.1.4-codex.1",
       "description": "Run explicit, isolated parallel ideation in Codex, then score, cluster, reject traps, and deepen the strongest options.",
