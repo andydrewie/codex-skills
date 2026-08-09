@@ -191,6 +191,53 @@
       "category": "Productivity"
     },
     {
+      "name": "voice-edit",
+      "version": "1.0.1",
+      "description": "An explicit-use Codex prose editor that improves clarity and cadence while preserving meaning, evidence, and the writer's supplied voice.",
+      "author": {
+        "name": "Andrew Fai",
+        "url": "https://github.com/andydrewie"
+      },
+      "homepage": "https://github.com/andydrewie/voice-edit#readme",
+      "repository": "https://github.com/andydrewie/voice-edit",
+      "license": "MIT",
+      "keywords": [
+        "codex",
+        "writing",
+        "editing",
+        "voice-preservation",
+        "explicit-invocation"
+      ],
+      "interface": {
+        "displayName": "Voice Edit",
+        "shortDescription": "Preserve your voice while tightening prose",
+        "longDescription": "Edit or audit prose with minimum-effective changes while protecting facts, uncertainty, citations, technical terms, and the writer's supplied voice.",
+        "developerName": "Andrew Fai",
+        "category": "Productivity",
+        "capabilities": [
+          "Interactive",
+          "Write"
+        ],
+        "websiteURL": "https://github.com/andydrewie/voice-edit",
+        "defaultPrompt": [
+          "Use $voice-edit to refine this prose while preserving its meaning and voice."
+        ]
+      },
+      "source": {
+        "source": "url",
+        "url": "https://github.com/andydrewie/voice-edit.git",
+        "sha": "68e46246b2e8e5efdf39443462045f13f178ff22"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL",
+        "products": [
+          "CODEX"
+        ]
+      },
+      "category": "Productivity"
+    },
+    {
       "name": "adhd",
       "version": "0.1.4-codex.1",
       "description": "Run explicit, isolated parallel ideation in Codex, then score, cluster, reject traps, and deepen the strongest options.",

@@ -2,13 +2,13 @@
 
 A Codex-only Agent Plugins marketplace for standalone skills and reviewed compatibility packages maintained by Andrew Fai.
 
-First-party skills link to their canonical public repositories. Reviewed third-party forks remain attributed to their upstream projects and install from immutable commits on dedicated compatibility branches. This catalogue does not duplicate source trees or include submodules. Entries are added only after the exact installation path has been tested with Codex and this repository's validator.
+First-party skills link to their canonical public repositories. Owned derived packages disclose their source lineage without pretending to be GitHub forks. Reviewed third-party forks remain attributed to their upstream projects and install from immutable commits on dedicated compatibility branches. This catalogue does not duplicate source trees or include submodules. Entries are added only after the exact installation path has been tested with Codex and this repository's validator.
 
 ## Activation model
 
 This catalog separates skill selection from permission to act:
 
-- The behavioral overlays `quantitative-grounding`, `precise-terms`, `adhd`, and `caveman` are explicit-only. Invoke them by name; ordinary prompts do not activate them.
+- The behavioral overlays `quantitative-grounding`, `precise-terms`, `voice-edit`, `adhd`, and `caveman` are explicit-only. Invoke them by name; ordinary prompts do not activate them.
 - `side-refresh` is also explicit-only, but it is a read-only task-context utility rather than a behavioral overlay. Invoke it through `$side-refresh`.
 - `analyze-screen-feedback` is the narrow direct-intent exception. Codex may select it only when a request unambiguously asks to analyze a narrated screen recording; `$analyze-screen-feedback` remains preferred.
 
@@ -16,7 +16,7 @@ Selecting a skill never authorizes package installation, downloads, uploads, per
 
 ## Marketplace installation
 
-All six reviewed packages are pinned to full commit SHAs. Add the catalog once, then install the package you want by name:
+All seven reviewed packages are pinned to full commit SHAs. Add the catalog once, then install the package you want by name:
 
 ```bash
 codex plugin marketplace add andydrewie/codex-skills
@@ -24,6 +24,7 @@ codex plugin add analyze-screen-feedback@andydrewie-codex-skills
 codex plugin add precise-terms@andydrewie-codex-skills
 codex plugin add quantitative-grounding@andydrewie-codex-skills
 codex plugin add side-refresh@andydrewie-codex-skills
+codex plugin add voice-edit@andydrewie-codex-skills
 codex plugin add adhd@andydrewie-codex-skills
 codex plugin add caveman@andydrewie-codex-skills
 ```
@@ -72,7 +73,7 @@ Validation rejects mutable refs, path escapes, symlinks, nested undiscoverable s
 Two GitHub workflows run every Tuesday and support manual dispatch:
 
 - `Monitor Agent Plugin standards` runs at 04:17 UTC. It compares the published Agent Plugins versions and the unversioned Agent Skills document with `standards.lock.json`.
-- `Monitor Codex skill adapters` runs at 04:41 UTC. It verifies all six immutable package tags, commits, full-tree inventories, rollback paths, marketplace pins, fork provenance, adapter invariants, upstream watched files, and the disabled Caveman fork-side sync workflow against `upstreams.lock.json`.
+- `Monitor Codex skill adapters` runs at 04:41 UTC. It verifies all seven immutable package tags, commits, full-tree inventories, rollback paths, marketplace pins, fork or owned-derivative provenance, adapter invariants, upstream watched files, and the disabled Caveman fork-side sync workflow against `upstreams.lock.json`.
 
 Both monitors use bounded GitHub REST byte reads. They never execute fetched code and never change forks, upstreams, package pins, tags, or lock files. The adapter monitor checks each tag's exact commit plus the publicly visible active ruleset, ref pattern, deletion rule, and non-fast-forward rule. GitHub hides cross-repository bypass-actor details from the workflow's least-privilege token; the release-time empty-bypass audit remains recorded in the lock, while any actual tag move is still detected directly. A reconciler keeps one issue per monitor, updates it only when the finding fingerprint changes, and closes it after a clean run.
 
@@ -154,6 +155,34 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
   --name side-refresh
 ```
 
+## Owned derived packages
+
+Owned derived packages are original repositories with explicit source lineage. They are not GitHub forks and do not auto-merge upstream behavioral text. Upstream drift opens a review signal; a new Index pin requires a separately validated and immutable release.
+
+### voice-edit
+
+**Purpose:** Audit or refine prose with the minimum effective change while preserving meaning, evidence, calibrated uncertainty, technical terms, and the writer's supplied voice.
+
+**Activation:** Explicit invocation only through `$voice-edit`; ordinary requests to write, rewrite, polish, shorten, or “humanize” prose do not activate it.
+
+**Source lineage:** [petergyang/no-ai-slop](https://github.com/petergyang/no-ai-slop) supplied MIT-licensed minimum-edit and voice-preservation concepts. [andydrewie/voice-edit](https://github.com/andydrewie/voice-edit) is a separately maintained Codex adaptation, not a GitHub fork. Its provenance file, retained license, and source baseline are monitored together.
+
+**Editorial boundary:** Treats recurring prose constructions as contextual signals rather than banned words or punctuation. It does not infer authorship, promise detector evasion, add unsupported personality, or treat invocation as permission to overwrite a file. A lexical preservation checker flags machine-detectable drift without claiming semantic equivalence.
+
+**Research boundary:** `blader/humanizer` was evaluated but contributes no wording, examples, or files while its licensing provenance remains unresolved.
+
+**Immutable package:** [andydrewie/voice-edit `codex-plugin-v1.0.1` at `68e4624`](https://github.com/andydrewie/voice-edit/tree/68e46246b2e8e5efdf39443462045f13f178ff22)
+
+**Retained selective rollback installation (2026-08-09):**
+
+```bash
+python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
+  --repo andydrewie/voice-edit \
+  --ref f4fa86be2ce3a61cf97b4030872f189db6725d71 \
+  --path skills/voice-edit \
+  --name voice-edit
+```
+
 ## Verified third-party fork packages
 
 These packages adapt upstream skills to the Codex skill schema without placing custom commits on each fork's syncable `main` branch. Install commands pin immutable commit SHAs so upstream synchronization cannot silently change installed behavior.
@@ -210,4 +239,4 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
 
 ## Inclusion policy
 
-Future entries require a public source, license attribution, a reviewed and immutable installation ref, a validated selective-install path, explicit activation and side-effect boundaries, and honest cost or privacy notes where relevant. Canonical standalone repositories and reviewed fork packages remain the sources of truth for their respective entries.
+Future entries require a public source, license attribution, a reviewed and immutable installation ref, a validated selective-install path, explicit activation and side-effect boundaries, and honest cost or privacy notes where relevant. Canonical standalone repositories, provenance-locked owned derivatives, and reviewed fork packages remain the sources of truth for their respective entries.

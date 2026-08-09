@@ -134,6 +134,11 @@ class MonitorTests(unittest.TestCase):
         with self.assertRaises(MonitorError):
             validate_release_lock_structure(missing_adapter)
 
+        missing_derived_adapter = copy.deepcopy(original)
+        del missing_derived_adapter["adapters"]["voice-edit"]
+        with self.assertRaises(MonitorError):
+            validate_release_lock_structure(missing_derived_adapter)
+
         missing_package = copy.deepcopy(original)
         del missing_package["packages"]["side-refresh"]
         with self.assertRaises(MonitorError):
@@ -159,6 +164,42 @@ class MonitorTests(unittest.TestCase):
         ] = "a"
         with self.assertRaises(MonitorError):
             validate_release_lock_structure(weakened_text)
+
+    def test_release_lock_rejects_derived_provenance_downgrades(self) -> None:
+        original = load_json(REPO_ROOT / "upstreams.lock.json")
+
+        wrong_relationship = copy.deepcopy(original)
+        wrong_relationship["adapters"]["voice-edit"]["derived_provenance"][
+            "repository_relationship"
+        ] = "github-fork"
+
+        wrong_license = copy.deepcopy(original)
+        wrong_license["adapters"]["voice-edit"]["derived_provenance"][
+            "source_license"
+        ] = "UNKNOWN"
+
+        disguised_as_fork = copy.deepcopy(original)
+        provenance = disguised_as_fork["adapters"]["voice-edit"].pop(
+            "derived_provenance"
+        )
+        disguised_as_fork["adapters"]["voice-edit"]["fork_provenance"] = {
+            "must_be_fork": True,
+            "parent_repository": provenance["upstream_repository"],
+        }
+
+        retained_license_changed = copy.deepcopy(original)
+        retained_license_changed["packages"]["voice-edit"]["current"]["files"][
+            "LICENSES/no-ai-slop-MIT.txt"
+        ] = "f" * 64
+
+        for label, changed in (
+            ("wrong relationship", wrong_relationship),
+            ("wrong license", wrong_license),
+            ("disguised as fork", disguised_as_fork),
+            ("changed retained license", retained_license_changed),
+        ):
+            with self.subTest(label=label), self.assertRaises(MonitorError):
+                validate_release_lock_structure(changed)
 
     def test_release_lock_rejects_placeholders_and_impossible_counts(self) -> None:
         original = load_json(REPO_ROOT / "upstreams.lock.json")
@@ -214,6 +255,139 @@ class MonitorTests(unittest.TestCase):
         self.assertEqual(
             ["tag-protection-bypass-visibility-limited"],
             [item["code"] for item in report["findings"]],
+        )
+
+    def test_repository_provenance_distinguishes_forks_and_derivatives(self) -> None:
+        fork_adapter = {
+            "fork_provenance": {
+                "parent_repository": "https://github.com/example/upstream"
+            }
+        }
+        derived_adapter = {"derived_provenance": {}}
+
+        clean_fork = monitor_adapters._repository_provenance_findings(
+            "forked",
+            fork_adapter,
+            {
+                "fork": True,
+                "parent": {"html_url": "https://github.com/example/upstream"},
+            },
+        )
+        clean_derived = monitor_adapters._repository_provenance_findings(
+            "derived", derived_adapter, {"fork": False, "parent": None}
+        )
+        wrong_parent = monitor_adapters._repository_provenance_findings(
+            "forked",
+            fork_adapter,
+            {
+                "fork": True,
+                "parent": {"html_url": "https://github.com/example/different"},
+            },
+        )
+        unexpected_fork = monitor_adapters._repository_provenance_findings(
+            "derived", derived_adapter, {"fork": True}
+        )
+
+        self.assertEqual([], clean_fork)
+        self.assertEqual([], clean_derived)
+        self.assertEqual(["fork-parent-mismatch"], [item.code for item in wrong_parent])
+        self.assertEqual(
+            ["derived-repository-relationship-mismatch"],
+            [item.code for item in unexpected_fork],
+        )
+
+    def test_derived_provenance_and_retained_license_are_verified(self) -> None:
+        package_repository = "https://github.com/andydrewie/voice-edit"
+        upstream_repository = "https://github.com/petergyang/no-ai-slop"
+        package_commit = "a" * 40
+        upstream_commit = "b" * 40
+        source_license = b"reviewed MIT license\n"
+        provenance = {
+            "format_version": 1,
+            "package": "voice-edit",
+            "relationship": "codex_adaptation",
+            "primary_source": {
+                "repository": upstream_repository,
+                "baseline_commit": upstream_commit,
+                "license": "MIT",
+                "license_path": "LICENSES/no-ai-slop-MIT.txt",
+            },
+        }
+        notice = (
+            f"Repository: {upstream_repository}\n"
+            f"Reviewed baseline: {upstream_commit}\n"
+            "License: MIT\n"
+        ).encode()
+
+        class DerivedFixtureClient:
+            def __init__(self, *, provenance_bytes: bytes, retained_license: bytes) -> None:
+                self.provenance_bytes = provenance_bytes
+                self.retained_license = retained_license
+
+            def read_file(self, repository: str, path: str, ref: str) -> bytes:
+                if repository == upstream_repository:
+                    self.assert_upstream(path, ref)
+                    return source_license
+                if repository != package_repository or ref != package_commit:
+                    raise AssertionError((repository, path, ref))
+                return {
+                    "PROVENANCE.json": self.provenance_bytes,
+                    "THIRD_PARTY_NOTICES.md": notice,
+                    "LICENSES/no-ai-slop-MIT.txt": self.retained_license,
+                }[path]
+
+            @staticmethod
+            def assert_upstream(path: str, ref: str) -> None:
+                if path != "LICENSE" or ref != upstream_commit:
+                    raise AssertionError((path, ref))
+
+        adapter = {
+            "derived_provenance": {
+                "repository_relationship": "independent-derived",
+                "upstream_repository": upstream_repository,
+                "source_license": "MIT",
+                "provenance_path": "PROVENANCE.json",
+                "notice_path": "THIRD_PARTY_NOTICES.md",
+                "source_license_path": "LICENSES/no-ai-slop-MIT.txt",
+            },
+            "upstream": {
+                "repository": upstream_repository,
+                "baseline_commit": upstream_commit,
+            },
+        }
+
+        clean: list[object] = []
+        monitor_adapters._check_derived_provenance(
+            DerivedFixtureClient(
+                provenance_bytes=json.dumps(provenance).encode(),
+                retained_license=source_license,
+            ),
+            clean,
+            name="voice-edit",
+            repository=package_repository,
+            commit=package_commit,
+            plugin_root=".",
+            adapter=adapter,
+        )
+        self.assertEqual([], clean)
+
+        provenance["primary_source"]["baseline_commit"] = "c" * 40
+        drift: list[object] = []
+        monitor_adapters._check_derived_provenance(
+            DerivedFixtureClient(
+                provenance_bytes=json.dumps(provenance).encode(),
+                retained_license=b"different license\n",
+            ),
+            drift,
+            name="voice-edit",
+            repository=package_repository,
+            commit=package_commit,
+            plugin_root=".",
+            adapter=adapter,
+        )
+        self.assertEqual(
+            {"derived-provenance-mismatch", "retained-source-license-mismatch"},
+            {item.code for item in drift},
         )
 
     def test_status_contract_and_fingerprint_are_stable(self) -> None:

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify immutable package releases and report reviewed-adapter upstream drift."""
+"""Verify immutable package releases and report reviewed-source upstream drift."""
 
 from __future__ import annotations
 
@@ -226,6 +226,207 @@ def _ruleset_findings(
     return findings
 
 
+def _repository_provenance_findings(
+    name: str, adapter: dict[str, Any], metadata: Any
+) -> list[Any]:
+    """Distinguish verified GitHub forks from independently owned derivatives."""
+
+    findings: list[Any] = []
+    if "fork_provenance" in adapter:
+        parent = metadata.get("parent") if isinstance(metadata, dict) else None
+        actual_parent = parent.get("html_url") if isinstance(parent, dict) else None
+        if not isinstance(metadata, dict) or metadata.get("fork") is not True:
+            findings.append(
+                finding(
+                    "INTEGRITY_FAILURE",
+                    "fork-provenance-lost",
+                    name,
+                    "The adapter repository is no longer marked as a fork.",
+                )
+            )
+        expected_parent = adapter["fork_provenance"]["parent_repository"]
+        if actual_parent != expected_parent:
+            findings.append(
+                finding(
+                    "INTEGRITY_FAILURE",
+                    "fork-parent-mismatch",
+                    name,
+                    "The GitHub fork parent no longer matches the reviewed upstream.",
+                    expected=expected_parent,
+                    actual=actual_parent or "missing",
+                )
+            )
+    elif not isinstance(metadata, dict) or metadata.get("fork") is not False:
+        actual = metadata.get("fork") if isinstance(metadata, dict) else "malformed"
+        findings.append(
+            finding(
+                "INTEGRITY_FAILURE",
+                "derived-repository-relationship-mismatch",
+                name,
+                "The owned derivative repository is unexpectedly marked as a GitHub fork.",
+                expected="fork=false",
+                actual=f"fork={actual}",
+            )
+        )
+    return findings
+
+
+def _strict_json_object(data: bytes) -> dict[str, Any]:
+    def reject_constant(value: str) -> None:
+        raise ValueError(f"non-standard JSON constant {value!r}")
+
+    def reject_duplicate_pairs(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+        result: dict[str, Any] = {}
+        for key, value in pairs:
+            if key in result:
+                raise ValueError(f"duplicate JSON key {key!r}")
+            result[key] = value
+        return result
+
+    value = json.loads(
+        data.decode("utf-8"),
+        parse_constant=reject_constant,
+        object_pairs_hook=reject_duplicate_pairs,
+    )
+    if not isinstance(value, dict):
+        raise ValueError("provenance document must be a JSON object")
+    return value
+
+
+def _check_derived_provenance(
+    client: GitHubClient,
+    findings: list[Any],
+    *,
+    name: str,
+    repository: str,
+    commit: str,
+    plugin_root: str,
+    adapter: dict[str, Any],
+) -> None:
+    provenance_lock = adapter.get("derived_provenance")
+    if not isinstance(provenance_lock, dict):
+        return
+    upstream = adapter["upstream"]
+
+    def read_package(path: str, subject: str) -> bytes | None:
+        remote_path = repository_path(plugin_root, path)
+        try:
+            return client.read_file(repository, remote_path, commit)
+        except MonitorError as exc:
+            _source_unavailable(findings, subject, exc)
+            return None
+
+    raw_provenance = read_package(
+        provenance_lock["provenance_path"], f"{name} derived provenance"
+    )
+    if raw_provenance is not None:
+        try:
+            document = _strict_json_object(raw_provenance)
+        except (UnicodeError, ValueError) as exc:
+            findings.append(
+                finding(
+                    "INTEGRITY_FAILURE",
+                    "derived-provenance-invalid",
+                    name,
+                    f"The derived provenance document is invalid: {exc}",
+                )
+            )
+        else:
+            primary = document.get("primary_source")
+            primary = primary if isinstance(primary, dict) else {}
+            checks = (
+                ("format_version", 1, document.get("format_version")),
+                ("package", name, document.get("package")),
+                ("relationship", "codex_adaptation", document.get("relationship")),
+                (
+                    "primary_source.repository",
+                    upstream["repository"],
+                    primary.get("repository"),
+                ),
+                (
+                    "primary_source.baseline_commit",
+                    upstream["baseline_commit"],
+                    primary.get("baseline_commit"),
+                ),
+                (
+                    "primary_source.license",
+                    provenance_lock["source_license"],
+                    primary.get("license"),
+                ),
+                (
+                    "primary_source.license_path",
+                    provenance_lock["source_license_path"],
+                    primary.get("license_path"),
+                ),
+            )
+            for field, expected, actual in checks:
+                if actual != expected:
+                    findings.append(
+                        finding(
+                            "INTEGRITY_FAILURE",
+                            "derived-provenance-mismatch",
+                            f"{name}:{field}",
+                            "The package provenance disagrees with the reviewed source lock.",
+                            expected=str(expected),
+                            actual=str(actual) if actual is not None else "missing",
+                        )
+                    )
+
+    raw_notice = read_package(provenance_lock["notice_path"], f"{name} source notice")
+    if raw_notice is not None:
+        try:
+            notice = raw_notice.decode("utf-8")
+        except UnicodeError:
+            findings.append(
+                finding(
+                    "INTEGRITY_FAILURE",
+                    "derived-notice-not-utf8",
+                    name,
+                    "The third-party notice is not valid UTF-8.",
+                )
+            )
+        else:
+            notice_tokens = (
+                upstream["repository"],
+                upstream["baseline_commit"],
+                f"License: {provenance_lock['source_license']}",
+            )
+            for token in notice_tokens:
+                if token not in notice:
+                    findings.append(
+                        finding(
+                            "INTEGRITY_FAILURE",
+                            "derived-notice-mismatch",
+                            name,
+                            "The third-party notice omits reviewed source metadata.",
+                            expected=token,
+                            actual="missing",
+                        )
+                    )
+
+    retained_license = read_package(
+        provenance_lock["source_license_path"], f"{name} retained source license"
+    )
+    try:
+        upstream_license = client.read_file(
+            upstream["repository"], "LICENSE", upstream["baseline_commit"]
+        )
+    except MonitorError as exc:
+        _source_unavailable(findings, f"{name} upstream source license", exc)
+    else:
+        if retained_license is not None and retained_license != upstream_license:
+            findings.append(
+                finding(
+                    "INTEGRITY_FAILURE",
+                    "retained-source-license-mismatch",
+                    name,
+                    "The retained source license is not byte-identical to the reviewed upstream license.",
+                    expected=sha256_bytes(upstream_license),
+                    actual=sha256_bytes(retained_license),
+                )
+            )
+
+
 def _check_invariants(
     client: GitHubClient,
     findings: list[Any],
@@ -409,46 +610,27 @@ def run_monitor(repo_root: Path, client: GitHubClient) -> dict[str, Any]:
         try:
             metadata = client.get_json(f"/repos/{slug}")
         except MonitorError as exc:
-            _source_unavailable(findings, f"{name} fork provenance", exc)
+            _source_unavailable(findings, f"{name} repository provenance", exc)
         else:
-            parent = metadata.get("parent") if isinstance(metadata, dict) else None
-            actual_parent = parent.get("html_url") if isinstance(parent, dict) else None
-            if not isinstance(metadata, dict) or metadata.get("fork") is not True:
-                findings.append(
-                    finding(
-                        "INTEGRITY_FAILURE",
-                        "fork-provenance-lost",
-                        name,
-                        "The adapter repository is no longer marked as a fork.",
+            findings.extend(_repository_provenance_findings(name, adapter, metadata))
+        adapter_branch = adapter.get("adapter_branch")
+        if isinstance(adapter_branch, str):
+            try:
+                branch_commit = client.commit_sha(repository, adapter_branch)
+            except MonitorError as exc:
+                _source_unavailable(findings, f"{name} adapter branch", exc)
+            else:
+                if branch_commit != current["commit"]:
+                    findings.append(
+                        finding(
+                            "REVIEW_REQUIRED",
+                            "adapter-branch-advanced",
+                            name,
+                            "The compatibility branch differs from the published package pin.",
+                            expected=current["commit"],
+                            actual=branch_commit,
+                        )
                     )
-                )
-            if actual_parent != adapter["fork_provenance"]["parent_repository"]:
-                findings.append(
-                    finding(
-                        "INTEGRITY_FAILURE",
-                        "fork-parent-mismatch",
-                        name,
-                        "The GitHub fork parent no longer matches the reviewed upstream.",
-                        expected=adapter["fork_provenance"]["parent_repository"],
-                        actual=actual_parent or "missing",
-                    )
-                )
-        try:
-            branch_commit = client.commit_sha(repository, adapter["adapter_branch"])
-        except MonitorError as exc:
-            _source_unavailable(findings, f"{name} adapter branch", exc)
-        else:
-            if branch_commit != current["commit"]:
-                findings.append(
-                    finding(
-                        "REVIEW_REQUIRED",
-                        "adapter-branch-advanced",
-                        name,
-                        "The compatibility branch differs from the published package pin.",
-                        expected=current["commit"],
-                        actual=branch_commit,
-                    )
-                )
 
         _check_invariants(
             client,
@@ -458,6 +640,15 @@ def run_monitor(repo_root: Path, client: GitHubClient) -> dict[str, Any]:
             commit=current["commit"],
             plugin_root=current["plugin_root"],
             invariants=adapter["invariants"],
+        )
+        _check_derived_provenance(
+            client,
+            findings,
+            name=name,
+            repository=repository,
+            commit=current["commit"],
+            plugin_root=current["plugin_root"],
+            adapter=adapter,
         )
 
         upstream = adapter["upstream"]
