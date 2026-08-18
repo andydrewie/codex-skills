@@ -36,6 +36,22 @@ LABELS = {
 }
 
 
+def _reconciled_job_exit_code(status: object) -> int:
+    """Map a reconciled report to the GitHub Actions job result.
+
+    REVIEW_REQUIRED is an expected, successfully delivered monitor outcome. It
+    remains exit 10 in the immutable report contract, but the workflow is green
+    once its issue has been reconciled. Operational and integrity failures stay
+    red. Unknown values fail closed as a configuration error.
+    """
+
+    if status in {"CLEAN", "REVIEW_REQUIRED"}:
+        return 0
+    if isinstance(status, str) and status in STATUS_EXIT_CODES:
+        return STATUS_EXIT_CODES[status]
+    return STATUS_EXIT_CODES["CONFIG_OR_USAGE_ERROR"]
+
+
 def _validated_report(path: Path) -> dict[str, Any]:
     report = load_json(path)
     required = {
@@ -315,8 +331,18 @@ def main() -> int:
         )
         write_report(report, None)
         return int(report["exit_code"])
-    print(json.dumps({"status": "CLEAN", "monitor": source_report["monitor"]}))
-    return 0
+    job_exit_code = _reconciled_job_exit_code(source_report["status"])
+    print(
+        json.dumps(
+            {
+                "status": "RECONCILED",
+                "monitor": source_report["monitor"],
+                "report_status": source_report["status"],
+                "job_exit_code": job_exit_code,
+            }
+        )
+    )
+    return job_exit_code
 
 
 if __name__ == "__main__":

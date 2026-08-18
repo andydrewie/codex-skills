@@ -240,32 +240,32 @@
         "bypass_actors": []
       },
       "current": {
-        "version": "0.1.0-codex.1",
-        "commit": "6fd290f5ffd6f20ba82ea6fa54519deea173216e",
-        "tag": "codex-plugin-v0.1.0-codex.1",
+        "version": "0.1.0-codex.3",
+        "commit": "dfc13eb319caeb2a56f0545e97678539f09ada61",
+        "tag": "codex-plugin-v0.1.0-codex.3",
         "plugin_root": "agent-plugins/caveman",
-        "git_tree_sha1": "32af3be7986b1a1789a5438bf8b074a1d5c5e1b3",
-        "tree_sha256": "0eaa7ce61bdcd9144c8458075eb6347ad049128f7e25b77ef785ef29c774192c",
+        "git_tree_sha1": "0e639680a56caaf2021a36cfce917379865ad41a",
+        "tree_sha256": "0b92225f2bdbfc11881b76309f9ae423fef0b404bb4e98eeae3e0606e5e36fe6",
         "file_count": 8,
-        "total_bytes": 10997,
+        "total_bytes": 11962,
         "files": {
-          ".codex-plugin/plugin.json": "c0d3b0dc99663edd4f973f08ec34c438dac138165b53e204b7f61f04aec27ada",
+          ".codex-plugin/plugin.json": "98575198d4fe8283783b4bbdb47af8c5f445a3fda036df88f235842a45260580",
           "LICENSE": "5eb826cd03151bcc7cce3f80d40e87733237fedfc6c36d6908aca5fd650a0bdb",
-          "plugin.json": "08fa8a36f0767b17324d90f3fcfaaff4b6c3c68faf3b91739d654170d7fa7f28",
+          "PROVENANCE.json": "c2e7feb96bb72d42c25e8d1851b85116dfde355d43feef93e0ae2607ea19bb8f",
+          "plugin.json": "d37352e6676f1f7f18a0369b41b750b518426cba63a58346bcf9b10c6b65fc09",
           "skills/caveman/LICENSE.txt": "b5d205abcc65ccf89e82945e32982ddeb2dfb511d5c6990d78317f9b9cba7a91",
-          "skills/caveman/SKILL.md": "a988f91f29b8e01ad9171af323673ef0407cb334df4f2a03a476a9892c062a58",
-          "skills/caveman/agents/openai.yaml": "cc1bec3549376f83ac48cf818c24f97477f908537255891377ab6bfbda7ff13e",
-          "skills/caveman/assets/caveman-small.svg": "1c8f55516541b6094cb20ceabb50ff89b01d1acafaae84487e53739deebcbb1f",
-          "skills/caveman/assets/caveman.svg": "8024fa96dce034675eb5610139e75f6d2b5db3b4cb3df3090adb8a2b2a285595"
+          "skills/caveman/SKILL.md": "115077e1c4b349a25a1e5da85e8e05ca82777e9d0f8e394a84730395e2641bfe",
+          "skills/caveman/TRADEMARK_NOTICE.md": "c9e9c167df1b2f93845c418510c4b85bce89ce334247a1aa213e324a16262581",
+          "skills/caveman/agents/openai.yaml": "dae3a8843045bb1876e19e1a69f22d2220ddef83756b0fc4ca949d248c870f57"
         }
       },
       "previous": {
-        "commit": "c71d33b24b1ceb15dbfd2994adb5bcb9dd490860",
-        "path": "codex-skills/caveman",
-        "git_tree_sha1": "eecb70821239c9ae784bb9cc6980521b79ae4151",
-        "tree_sha256": "c2eb740387600f1e043c2a63b1381b1e8a3c1ca7ce0677528caacc9e0d5e4b31",
-        "file_count": 5,
-        "total_bytes": 6917
+        "commit": "6fd290f5ffd6f20ba82ea6fa54519deea173216e",
+        "path": "agent-plugins/caveman",
+        "git_tree_sha1": "32af3be7986b1a1789a5438bf8b074a1d5c5e1b3",
+        "tree_sha256": "0eaa7ce61bdcd9144c8458075eb6347ad049128f7e25b77ef785ef29c774192c",
+        "file_count": 8,
+        "total_bytes": 10997
       }
     }
   },
@@ -590,21 +590,23 @@
       "upstream": {
         "repository": "https://github.com/JuliusBrussee/caveman",
         "default_branch": "main",
-        "baseline_commit": "ec83e5bace4c20484d704dea21e12fc4eb94e9aa",
+        "baseline_commit": "766dce6b1394ebb56a3090748d5a0240a5aefb36",
         "source_path": "plugins/caveman/skills/caveman",
-        "git_tree_sha1": "5501d8869b840169af966694bfa852965162f2f4",
-        "tree_sha256": "56ff72f1aeeedd62803ca97907ba183b7c13216f13166c77f11ff49112905a3d",
+        "git_tree_sha1": "654a3ac988675de0f9f1103c0fff0a628076fa08",
+        "tree_sha256": "63f67111daa8b532ca4f85a92efef863396a0c0d05efdda863f05c4aa5cde2fe",
         "file_count": 4,
-        "total_bytes": 7474,
+        "total_bytes": 8046,
         "files": {
-          "SKILL.md": "daf9cec496ebd039809d8236f99f17fa1b4beaadf8ce4e2d532d0da51d70afce",
+          "SKILL.md": "1eddf7055618153869975678d9ff36635602a3aa333f8b4cc0787f12de75b6f8",
           "agents/openai.yaml": "4961a650c93d688aab1f68850149cfde235a9f25b20072fcad3ee192914808fc",
           "assets/caveman-small.svg": "1c8f55516541b6094cb20ceabb50ff89b01d1acafaae84487e53739deebcbb1f",
           "assets/caveman.svg": "8024fa96dce034675eb5610139e75f6d2b5db3b4cb3df3090adb8a2b2a285595"
         },
         "watched_files": {
-          "LICENSE": "5eb826cd03151bcc7cce3f80d40e87733237fedfc6c36d6908aca5fd650a0bdb",
-          "docs/HONEST-NUMBERS.md": "67910ebd9bb99206e39d953e76b9c196d8c96eeef794ef6a69daa49366dd79f8"
+          "LICENSE": "f0abc56b6f49ab2e285bb6e6723f028abb7ebd4fe0e242bbdc2b4dded0ace8b9",
+          "LICENSING.md": "40e82e1afe000f110e37de76229be158e1c8def078e35f855a453c068666e19d",
+          "TRADEMARKS.md": "551fe5ac4d5e7363510ae4f030b56810d541f556ddaef5df316663be75f080f7",
+          "docs/HONEST-NUMBERS.md": "4bb7d2a294d39d3b602cda67612ebaf379c7d6930b1509ea749345eddc166161"
         }
       },
       "invariants": [
@@ -694,6 +696,11 @@
             {
               "op": "contains_utf8",
               "path": "skills/caveman/SKILL.md",
+              "value": "defect, ticket, or bug-report text"
+            },
+            {
+              "op": "contains_utf8",
+              "path": "skills/caveman/SKILL.md",
               "value": "Activating Caveman changes response style only. It does not authorize file"
             },
             {
@@ -715,17 +722,106 @@
         },
         {
           "id": "honest-token-cost-caveat",
-          "description": "The adapter preserves its input-cost caveat.",
+          "description": "The adapter rejects unsupported aggregate savings claims and requires workload-specific billing evidence.",
           "assertions": [
             {
               "op": "contains_utf8",
               "path": "skills/caveman/SKILL.md",
-              "value": "It can be net-negative for terse or tool-heavy"
+              "value": "no reviewed aggregate output-reduction figure"
             },
             {
               "op": "contains_utf8",
               "path": "skills/caveman/SKILL.md",
-              "value": "work and for request-priced services."
+              "value": "Do not claim\ncost savings from output length alone"
+            },
+            {
+              "op": "contains_utf8",
+              "path": "skills/caveman/SKILL.md",
+              "value": "provider-billed A/B comparison"
+            },
+            {
+              "op": "not_contains_utf8",
+              "path": "skills/caveman/SKILL.md",
+              "value": "65%"
+            }
+          ]
+        },
+        {
+          "id": "compression-only-with-user-override",
+          "description": "Caveman never expands merely for performative style and preserves explicit user override authority.",
+          "assertions": [
+            {
+              "op": "contains_utf8",
+              "path": "skills/caveman/SKILL.md",
+              "value": "Never add words or break correct grammar merely to sound caveman."
+            },
+            {
+              "op": "contains_utf8",
+              "path": "skills/caveman/SKILL.md",
+              "value": "follow that request outside Caveman mode"
+            }
+          ]
+        },
+        {
+          "id": "unofficial-trademark-safe-adapter",
+          "description": "The adapter is clearly unofficial and does not distribute upstream logo assets.",
+          "assertions": [
+            {
+              "op": "file_exists",
+              "path": "skills/caveman/TRADEMARK_NOTICE.md"
+            },
+            {
+              "op": "contains_utf8",
+              "path": "skills/caveman/TRADEMARK_NOTICE.md",
+              "value": "not endorsed by, affiliated"
+            },
+            {
+              "op": "contains_utf8",
+              "path": "skills/caveman/SKILL.md",
+              "value": "This is an unofficial Codex adaptation"
+            },
+            {
+              "op": "not_contains_utf8",
+              "path": "skills/caveman/agents/openai.yaml",
+              "value": "icon_small:"
+            },
+            {
+              "op": "not_contains_utf8",
+              "path": "skills/caveman/agents/openai.yaml",
+              "value": "icon_large:"
+            }
+          ]
+        },
+        {
+          "id": "mit-only-provenance-boundary",
+          "description": "The package records the reviewed upstream commit and excludes BSL runtime surfaces.",
+          "assertions": [
+            {
+              "op": "file_exists",
+              "path": "PROVENANCE.json"
+            },
+            {
+              "op": "json_pointer_equals",
+              "path": "PROVENANCE.json",
+              "pointer": "/relationship",
+              "value": "reviewed_codex_adapter"
+            },
+            {
+              "op": "json_pointer_equals",
+              "path": "PROVENANCE.json",
+              "pointer": "/upstream/reviewed_commit",
+              "value": "766dce6b1394ebb56a3090748d5a0240a5aefb36"
+            },
+            {
+              "op": "json_pointer_equals",
+              "path": "PROVENANCE.json",
+              "pointer": "/upstream/source_license",
+              "value": "MIT"
+            },
+            {
+              "op": "contains_utf8",
+              "path": "PROVENANCE.json",
+              "value": "All Caveman Engine, proxy, cache, rewriter, browser, MCP, telemetry, cloud, binary, and other BSL-1.1 runtime surfaces."
             }
           ]
         }

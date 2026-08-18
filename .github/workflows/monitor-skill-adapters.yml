@@ -44,8 +44,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: python3 scripts/reconcile_monitor_issue.py --report "$RUNNER_TEMP/adapters-report.json"
-
-      - name: Preserve monitor status
-        env:
-          MONITOR_EXIT: ${{ steps.monitor.outputs.exit_code }}
-        run: exit "$MONITOR_EXIT"

@@ -286,11 +286,11 @@
     },
     {
       "name": "caveman",
-      "version": "0.1.0-codex.1",
-      "description": "Explicitly activate terse, low-filler Codex replies while preserving exact technical meaning, safety, and required progress communication.",
+      "version": "0.1.0-codex.3",
+      "description": "Unofficial, explicit-use Codex adaptation for terse replies that preserve exact technical meaning, safety, and required progress communication.",
       "author": {
-        "name": "Julius Brussee",
-        "url": "https://github.com/JuliusBrussee"
+        "name": "Andrew Fai (Codex adapter)",
+        "url": "https://github.com/andydrewie"
       },
       "homepage": "https://github.com/andydrewie/caveman/tree/agent/codex-compatible-v1/agent-plugins/caveman",
       "repository": "https://github.com/andydrewie/caveman",
@@ -303,10 +303,10 @@
         "response-style"
       ],
       "interface": {
-        "displayName": "Caveman",
+        "displayName": "Caveman for Codex (Unofficial)",
         "shortDescription": "Terse replies with exact technical meaning",
-        "longDescription": "Compress Codex replies into terse, low-filler language while preserving technical accuracy, safety, approvals, and required progress communication.",
-        "developerName": "Julius Brussee",
+        "longDescription": "Unofficial Codex adaptation of Julius Brussee's Caveman skill. It compresses replies while preserving technical accuracy, safety, approvals, and required progress communication.",
+        "developerName": "Andrew Fai (Codex adapter)",
         "category": "Productivity",
         "capabilities": [
           "Write"
@@ -320,7 +320,7 @@
         "source": "git-subdir",
         "url": "https://github.com/andydrewie/caveman.git",
         "path": "agent-plugins/caveman",
-        "sha": "6fd290f5ffd6f20ba82ea6fa54519deea173216e"
+        "sha": "dfc13eb319caeb2a56f0545e97678539f09ada61"
       },
       "policy": {
         "installation": "AVAILABLE",
