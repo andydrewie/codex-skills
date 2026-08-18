@@ -56,6 +56,9 @@ REQUIRED_INVARIANT_IDS = {
         "auto-clarity-for-risk",
         "durable-artifacts-use-professional-prose",
         "honest-token-cost-caveat",
+        "compression-only-with-user-override",
+        "unofficial-trademark-safe-adapter",
+        "mit-only-provenance-boundary",
     },
     "voice-edit": {
         "explicit-invocation-only",
@@ -100,7 +103,12 @@ REQUIRED_ADAPTER_CONFIG = {
         "upstream_repository": "https://github.com/JuliusBrussee/caveman",
         "default_branch": "main",
         "source_path": "plugins/caveman/skills/caveman",
-        "watched_files": {"LICENSE", "docs/HONEST-NUMBERS.md"},
+        "watched_files": {
+            "LICENSE",
+            "LICENSING.md",
+            "TRADEMARKS.md",
+            "docs/HONEST-NUMBERS.md",
+        },
     },
     "voice-edit": {
         "upstream_repository": "https://github.com/petergyang/no-ai-slop",
@@ -177,6 +185,7 @@ REQUIRED_ASSERTION_SHAPES = {
                 ("contains_utf8", "skills/caveman/SKILL.md"),
                 ("contains_utf8", "skills/caveman/SKILL.md"),
                 ("contains_utf8", "skills/caveman/SKILL.md"),
+                ("contains_utf8", "skills/caveman/SKILL.md"),
                 (
                     "byte_equal",
                     "skills/caveman/SKILL.md",
@@ -190,7 +199,34 @@ REQUIRED_ASSERTION_SHAPES = {
             ]
         ),
         "honest-token-cost-caveat": Counter(
+            [("contains_utf8", "skills/caveman/SKILL.md")] * 3
+            + [("not_contains_utf8", "skills/caveman/SKILL.md")]
+        ),
+        "compression-only-with-user-override": Counter(
             [("contains_utf8", "skills/caveman/SKILL.md")] * 2
+        ),
+        "unofficial-trademark-safe-adapter": Counter(
+            [
+                ("file_exists", "skills/caveman/TRADEMARK_NOTICE.md"),
+                ("contains_utf8", "skills/caveman/TRADEMARK_NOTICE.md"),
+                ("contains_utf8", "skills/caveman/SKILL.md"),
+                ("not_contains_utf8", "skills/caveman/agents/openai.yaml"),
+                ("not_contains_utf8", "skills/caveman/agents/openai.yaml"),
+            ]
+        ),
+        "mit-only-provenance-boundary": Counter(
+            [
+                ("file_exists", "PROVENANCE.json"),
+                ("json_pointer_equals", "PROVENANCE.json", "/relationship", "reviewed_codex_adapter"),
+                (
+                    "json_pointer_equals",
+                    "PROVENANCE.json",
+                    "/upstream/reviewed_commit",
+                    "766dce6b1394ebb56a3090748d5a0240a5aefb36",
+                ),
+                ("json_pointer_equals", "PROVENANCE.json", "/upstream/source_license", "MIT"),
+                ("contains_utf8", "PROVENANCE.json"),
+            ]
         ),
     },
     "voice-edit": {
@@ -304,14 +340,40 @@ REQUIRED_TEXT_ASSERTIONS = {
         "durable-artifacts-use-professional-prose": Counter(
             [
                 ("contains_utf8", "skills/caveman/SKILL.md", "Keep durable artifacts in normal professional prose"),
+                ("contains_utf8", "skills/caveman/SKILL.md", "defect, ticket, or bug-report text"),
                 ("contains_utf8", "skills/caveman/SKILL.md", "Activating Caveman changes response style only. It does not authorize file"),
                 ("contains_utf8", "skills/caveman/SKILL.md", "writes, repository changes, external messages, or other side effects; those"),
             ]
         ),
         "honest-token-cost-caveat": Counter(
             [
-                ("contains_utf8", "skills/caveman/SKILL.md", "It can be net-negative for terse or tool-heavy"),
-                ("contains_utf8", "skills/caveman/SKILL.md", "work and for request-priced services."),
+                ("contains_utf8", "skills/caveman/SKILL.md", "no reviewed aggregate output-reduction figure"),
+                ("contains_utf8", "skills/caveman/SKILL.md", "Do not claim\ncost savings from output length alone"),
+                ("contains_utf8", "skills/caveman/SKILL.md", "provider-billed A/B comparison"),
+                ("not_contains_utf8", "skills/caveman/SKILL.md", "65%"),
+            ]
+        ),
+        "compression-only-with-user-override": Counter(
+            [
+                ("contains_utf8", "skills/caveman/SKILL.md", "Never add words or break correct grammar merely to sound caveman."),
+                ("contains_utf8", "skills/caveman/SKILL.md", "follow that request outside Caveman mode"),
+            ]
+        ),
+        "unofficial-trademark-safe-adapter": Counter(
+            [
+                ("contains_utf8", "skills/caveman/TRADEMARK_NOTICE.md", "not endorsed by, affiliated"),
+                ("contains_utf8", "skills/caveman/SKILL.md", "This is an unofficial Codex adaptation"),
+                ("not_contains_utf8", "skills/caveman/agents/openai.yaml", "icon_small:"),
+                ("not_contains_utf8", "skills/caveman/agents/openai.yaml", "icon_large:"),
+            ]
+        ),
+        "mit-only-provenance-boundary": Counter(
+            [
+                (
+                    "contains_utf8",
+                    "PROVENANCE.json",
+                    "All Caveman Engine, proxy, cache, rewriter, browser, MCP, telemetry, cloud, binary, and other BSL-1.1 runtime surfaces.",
+                ),
             ]
         ),
     },

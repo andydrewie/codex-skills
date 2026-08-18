@@ -77,9 +77,9 @@ Two GitHub workflows run every Tuesday and support manual dispatch:
 
 Both monitors use bounded GitHub REST byte reads. They never execute fetched code and never change forks, upstreams, package pins, tags, or lock files. The adapter monitor checks each tag's exact commit plus the publicly visible active ruleset, ref pattern, deletion rule, and non-fast-forward rule. GitHub hides cross-repository bypass-actor details from the workflow's least-privilege token; the release-time empty-bypass audit remains recorded in the lock, while any actual tag move is still detected directly. A reconciler keeps one issue per monitor, updates it only when the finding fingerprint changes, and closes it after a clean run.
 
-Status and exit codes are stable: `CLEAN=0`, `REVIEW_REQUIRED=10`, `INTEGRITY_FAILURE=20`, `SOURCE_UNAVAILABLE=30`, `ALERT_FAILURE=40`, `CONFIG_OR_USAGE_ERROR=64`, and `INTERNAL_ERROR=70`. Upstream changes request review; locked-byte, pin, provenance, tag, invariant, or safety-state mismatches are integrity failures. Network or GitHub API failures do not close an existing alert.
+Status and exit codes in the generated reports are stable: `CLEAN=0`, `REVIEW_REQUIRED=10`, `INTEGRITY_FAILURE=20`, `SOURCE_UNAVAILABLE=30`, `ALERT_FAILURE=40`, `CONFIG_OR_USAGE_ERROR=64`, and `INTERNAL_ERROR=70`. Upstream changes request review; locked-byte, pin, provenance, tag, invariant, or safety-state mismatches are integrity failures. After successful issue reconciliation, `CLEAN` and `REVIEW_REQUIRED` are green GitHub Actions outcomes because the monitor and its alert path worked as designed. Integrity, source, alert, configuration, and internal failures remain red. Network or GitHub API failures do not close an existing alert.
 
-These workflows replace the old fork-sync and duplicate local ADHD review automations only after both workflows have completed a successful manual dispatch. Pause the old automations for two weekly cycles before deleting them; do not alter the separate Matt Pocock skill update automation.
+These workflows are read-only alerting controls; they do not synchronize forks. Any separate fork-mirroring automation must require a zero-ahead fast-forward, healthy checks on the exact upstream SHA, and an independently reviewed adapter release. Keep unrelated source-review automations separate.
 
 ## Available skills
 
@@ -213,27 +213,29 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
 
 ### caveman
 
-**Purpose:** Compress replies into terse, low-filler language while preserving technical accuracy, safety, and required Codex progress communication.
+**Purpose:** Explicitly activate an unofficial Codex adaptation for terse, low-filler replies while preserving technical accuracy, safety, and required progress communication.
 
 **Upstream project:** [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman)
 
-**Verified fork package:** [andydrewie/caveman `codex-plugin-v0.1.0-codex.1` at `6fd290f`](https://github.com/andydrewie/caveman/tree/6fd290f5ffd6f20ba82ea6fa54519deea173216e/agent-plugins/caveman)
+**Verified fork package:** [andydrewie/caveman `codex-plugin-v0.1.0-codex.3` at `dfc13eb`](https://github.com/andydrewie/caveman/tree/dfc13eb319caeb2a56f0545e97678539f09ada61/agent-plugins/caveman)
 
-**Retained rollback path:** [`c71d33b/codex-skills/caveman`](https://github.com/andydrewie/caveman/tree/c71d33b24b1ceb15dbfd2994adb5bcb9dd490860/codex-skills/caveman)
+**Retained rollback path:** [`6fd290f/agent-plugins/caveman`](https://github.com/andydrewie/caveman/tree/6fd290f5ffd6f20ba82ea6fa54519deea173216e/agent-plugins/caveman)
 
 **Compatibility policy:** Explicit invocation only through `$caveman` or an unambiguous request to activate Caveman mode. Generic requests such as “be brief” do not activate it. Required progress notes, safety warnings, approvals, and blocker explanations remain visible and are compressed only when clarity is preserved.
 
-**Cost note:** The upstream benchmark reports about 65% lower output across ten verbose-reply prompts, but the full rules add roughly 1,000 to 1,500 input tokens per turn. The skill can be net-negative for terse or tool-heavy work and for request-priced services; treat it primarily as a readability and output-style tool unless an A/B test shows savings for the target workload.
+**Cost note:** The upstream repository currently publishes no reviewed aggregate output-reduction figure. The rules add input overhead and can be net-negative for terse, tool-heavy, or request-priced work. Treat the skill primarily as a readability and output-style tool; make cost claims only from a provider-billed A/B comparison on the target workload.
+
+**Branding and license boundary:** This is an unofficial adapter, not endorsed by or affiliated with Julius Brussee or the upstream Caveman project. The adapter uses the name only to identify its source, excludes the upstream logos, retains the MIT skill license, and excludes the Caveman Engine and other BSL-1.1 runtime surfaces.
 
 **Side-effect boundary:** Changes response style for the current task after activation. It does not itself authorize persistent file changes, external messages, or repository operations.
 
-**Retained selective rollback installation (2026-08-06):**
+**Retained selective rollback installation:**
 
 ```bash
 python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
   --repo andydrewie/caveman \
-  --ref c71d33b24b1ceb15dbfd2994adb5bcb9dd490860 \
-  --path codex-skills/caveman \
+  --ref 6fd290f5ffd6f20ba82ea6fa54519deea173216e \
+  --path agent-plugins/caveman/skills/caveman \
   --name caveman
 ```
 

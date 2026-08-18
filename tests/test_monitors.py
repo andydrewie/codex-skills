@@ -407,6 +407,91 @@ class MonitorTests(unittest.TestCase):
         self.assertEqual("SOURCE_UNAVAILABLE", aggregate["status"])
         self.assertEqual(30, aggregate["exit_code"])
 
+    def test_reconciled_job_exit_code_preserves_only_real_failures(self) -> None:
+        expected = {
+            "CLEAN": 0,
+            "REVIEW_REQUIRED": 0,
+            "INTEGRITY_FAILURE": 20,
+            "SOURCE_UNAVAILABLE": 30,
+            "ALERT_FAILURE": 40,
+            "CONFIG_OR_USAGE_ERROR": 64,
+            "INTERNAL_ERROR": 70,
+            "UNKNOWN": 64,
+        }
+        self.assertEqual(
+            expected,
+            {
+                status: reconciler._reconciled_job_exit_code(status)
+                for status in expected
+            },
+        )
+        self.assertEqual(64, reconciler._reconciled_job_exit_code(None))
+
+    def test_reconciler_main_maps_review_to_green_after_issue_delivery(self) -> None:
+        cases = (
+            ("REVIEW_REQUIRED", 0),
+            ("INTEGRITY_FAILURE", 20),
+        )
+        for severity, expected_exit in cases:
+            with self.subTest(severity=severity), tempfile.TemporaryDirectory() as temp:
+                report_path = Path(temp) / "report.json"
+                report = build_report(
+                    "agent-plugin-standards",
+                    [finding(severity, "fixture", "upstream", "fixture detail")],
+                )
+                report_path.write_text(json.dumps(report), encoding="utf-8")
+                argv = [
+                    reconciler.__file__,
+                    "--report",
+                    str(report_path),
+                    "--repository",
+                    "example/catalog",
+                ]
+                with (
+                    mock.patch.object(sys, "argv", argv),
+                    mock.patch.object(reconciler, "reconcile") as reconcile_mock,
+                    mock.patch.object(reconciler, "GitHubClient"),
+                ):
+                    self.assertEqual(expected_exit, reconciler.main())
+                reconcile_mock.assert_called_once()
+
+    def test_reconciler_main_keeps_failed_review_delivery_red(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            report_path = Path(temp) / "report.json"
+            report = build_report(
+                "agent-plugin-standards",
+                [finding("REVIEW_REQUIRED", "fixture", "upstream", "fixture detail")],
+            )
+            report_path.write_text(json.dumps(report), encoding="utf-8")
+            argv = [
+                reconciler.__file__,
+                "--report",
+                str(report_path),
+                "--repository",
+                "example/catalog",
+            ]
+            with (
+                mock.patch.object(sys, "argv", argv),
+                mock.patch.object(
+                    reconciler,
+                    "reconcile",
+                    side_effect=MonitorError("issue delivery unavailable"),
+                ),
+                mock.patch.object(reconciler, "GitHubClient"),
+            ):
+                self.assertEqual(40, reconciler.main())
+
+    def test_monitor_workflows_delegate_final_status_to_reconciler(self) -> None:
+        for relative in (
+            ".github/workflows/monitor-agent-plugin-standards.yml",
+            ".github/workflows/monitor-skill-adapters.yml",
+        ):
+            with self.subTest(workflow=relative):
+                text = (REPO_ROOT / relative).read_text(encoding="utf-8")
+                self.assertIn("scripts/reconcile_monitor_issue.py", text)
+                self.assertNotIn("Preserve monitor status", text)
+                self.assertNotIn('run: exit "$MONITOR_EXIT"', text)
+
     def test_cli_failure_still_writes_requested_report(self) -> None:
         for module in (monitor_standards, monitor_adapters):
             with self.subTest(module=module.__name__), tempfile.TemporaryDirectory() as temp:
