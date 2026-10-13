@@ -141,7 +141,7 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
 
 **Activation:** Explicit invocation only through `$side-refresh`; ordinary requests to summarize or check status do not activate it.
 
-**Task and privacy boundary:** Requires Codex app task-list and task-read capabilities, treats task content as untrusted read-only evidence, minimizes sensitive details, and never messages the main task unless the user separately and explicitly requests a relay.
+**Task and privacy boundary:** Requires Codex app task-read capability, plus task listing when discovering the target; treats task content as untrusted read-only evidence, minimizes sensitive details, and never messages the main task unless the user separately and explicitly requests a relay.
 
 **Canonical repository:** [andydrewie/side-refresh](https://github.com/andydrewie/side-refresh)
 
@@ -150,7 +150,7 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
 ```bash
 python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
   --repo andydrewie/side-refresh \
-  --ref 8068ef9f235d74b7347efc3deea4eb15e4f4cd2b \
+  --ref 5a33f214bdb2e13adbd1f4d8db4e78878e1a7317 \
   --path . \
   --name side-refresh
 ```

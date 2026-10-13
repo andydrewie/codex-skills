@@ -125,31 +125,31 @@
         "bypass_actors": []
       },
       "current": {
-        "version": "1.0.0",
-        "commit": "5a33f214bdb2e13adbd1f4d8db4e78878e1a7317",
-        "tag": "codex-plugin-v1.0.0",
+        "version": "1.0.1",
+        "commit": "87ecd9dca95057cd36fe8f11e48623dc91bf7a85",
+        "tag": "codex-plugin-v1.0.1",
         "plugin_root": ".",
-        "git_tree_sha1": "f0b5bb9dd640e6ef7abff73cf3b9812ec5db316e",
-        "tree_sha256": "3b2ec0218dfa933f4d3505409be449e1a9b0959bcbc0f87d13063e5a2fd68009",
+        "git_tree_sha1": "84718b86e371bc364017a4252060fc01910ec2ba",
+        "tree_sha256": "eafd2fde4967b267fc14130b0e2ba28da78262a6f73651fa37793289f1aff776",
         "file_count": 11,
-        "total_bytes": 24852,
+        "total_bytes": 25770,
         "files": {
-          ".codex-plugin/plugin.json": "bb630d98e8e4b2fad65c63ecf359d1f71311f0a50da68b1c0277b468f3a58380",
+          ".codex-plugin/plugin.json": "e11adc700cb11a0572c1a21ff505d5d3de3bfa6c8ed45ac2b70b0bdb8eec4541",
           "LICENSE": "d25c2037118fb45a5b74006e8c22b40f212a3962de5fde9f6155ba1b72fa29f5",
-          "SKILL.md": "a3cb4970f6a7c9284faab610061e5dbb89fdbd90a42912f08e26b71b4e60c107",
+          "SKILL.md": "c37f132f19f408398c218bd2dcbee5fcbcd225ce415db4478f7d4f882ded1d8b",
           "agents/openai.yaml": "1d82cf16a3c3f226162773e3603f27e145107e835fe04bc0734101bd0c0b17ca",
-          "plugin.json": "5d917c0a617f8890b3fd639610033724bf06e8285160f065e102f03937d26364",
-          "skills/side-refresh/SKILL.md": "a3cb4970f6a7c9284faab610061e5dbb89fdbd90a42912f08e26b71b4e60c107",
+          "plugin.json": "3894f1b2d3d1e3967e44de399e30f552d4a3ccdb71e236742c05fb0c2bba4373",
+          "skills/side-refresh/SKILL.md": "c37f132f19f408398c218bd2dcbee5fcbcd225ce415db4478f7d4f882ded1d8b",
           "skills/side-refresh/agents/openai.yaml": "1d82cf16a3c3f226162773e3603f27e145107e835fe04bc0734101bd0c0b17ca"
         }
       },
       "previous": {
-        "commit": "8068ef9f235d74b7347efc3deea4eb15e4f4cd2b",
+        "commit": "5a33f214bdb2e13adbd1f4d8db4e78878e1a7317",
         "path": ".",
-        "git_tree_sha1": "6d22e143bc4f0c188f4e6b2015a49368fe05857d",
-        "tree_sha256": "40869e6a5b4625fcf4c3d4bfb22425bc236c67a79cead0c78fcab1a0a786ee16",
-        "file_count": 5,
-        "total_bytes": 5744
+        "git_tree_sha1": "f0b5bb9dd640e6ef7abff73cf3b9812ec5db316e",
+        "tree_sha256": "3b2ec0218dfa933f4d3505409be449e1a9b0959bcbc0f87d13063e5a2fd68009",
+        "file_count": 11,
+        "total_bytes": 24852
       }
     },
     "voice-edit": {

@@ -145,7 +145,7 @@
     },
     {
       "name": "side-refresh",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Refresh a side conversation from the current state of an active main Codex task without interrupting or mutating it.",
       "author": {
         "name": "Andrew Fai",
@@ -179,7 +179,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/andydrewie/side-refresh.git",
-        "sha": "5a33f214bdb2e13adbd1f4d8db4e78878e1a7317"
+        "sha": "87ecd9dca95057cd36fe8f11e48623dc91bf7a85"
       },
       "policy": {
         "installation": "AVAILABLE",
